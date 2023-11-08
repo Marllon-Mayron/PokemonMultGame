@@ -1,0 +1,86 @@
+package pokeData;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
+
+import kaleb.entities.Pokemon;
+import kaleb.entities.SlotTrade;
+import kaleb.main.Game;
+
+public class TradeController {
+	public List<Pokemon> sameOfferList = new ArrayList<Pokemon>();
+	Pokemon requested, offered;
+	public Pokemon chosen;
+	public List<SlotTrade> slotList = new ArrayList<SlotTrade>();
+	public TradeController() {
+		for(int i = 0; i < 6; i++) {
+		 
+			SlotTrade st = new SlotTrade((Game.WIDTH * 14 / 100) * Game.SCALE + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 81 / 100) * Game.SCALE) + 2,(Game.WIDTH * 10 / 100) * Game.SCALE, 70, null);
+			slotList.add(st);
+		}
+	}
+
+	public void populateNpcTrade() {
+		offered = new Pokemon(0, 0, 5, 5, null, false, 4, 5, false);
+		requested = new Pokemon(0, 0, 5, 5, null, false, 10, 5, false);
+		
+		Game.ui.pkmOffer.add(offered);
+		Game.ui.pkmOffer.add(requested);
+	}
+	public void populateSameOffer(){
+		sameOfferList.clear();
+		for(int i = 0; i < Game.pokeList.size(); i++) {
+			if(Game.pokeList.get(i).id == requested.id) {
+				sameOfferList.add(Game.pokeList.get(i));
+				slotList.get(i).pokemon = Game.pokeList.get(i);
+			}
+		}
+	}
+	public void tradeAccept(Pokemon pkm) {
+		for(int i = 0; i < Game.pokeList.size(); i++) {
+			if(pkm.equals(Game.pokeList.get(i))) {
+				for(int j = 0; j < 6; j++) {
+					if(Game.slotList.get(j).pokemon.equals(pkm)) {
+						offered.lvl = pkm.lvl; 
+						offered.statsCalculator();
+						offered.currentHp = offered.maxHp;
+						offered.updateLife();
+						offered.updateXp();
+						
+						Game.pokeList.set(i, offered);
+						for(int k = 0; k < Game.slotPcList.size(); k++) {
+							if(Game.slotPcList.get(k).pokemon.equals(pkm)) {
+								Game.slotPcList.get(k).pokemon = offered;
+								
+								break;
+							}
+						}
+						Game.slotList.get(j).pokemon = offered;
+						break;
+					}
+				}
+				break;
+				
+			}
+		}
+		sameOfferList.clear();
+	}
+	public void render(Graphics g) {
+		if(sameOfferList.size() > 0 && Game.gameState == 2 && Game.ui.pcView == 2) {
+			for(int i = 0; i < 6; i++) {
+				if(sameOfferList.size() > i) {
+					for(int j = 0; j < Game.pokeList.size(); j++) {
+						if(Game.pokeList.get(j).equals(sameOfferList.get(i))) {
+							g.setColor(Color.red);
+							g.drawString((j+1)+"",(Game.WIDTH * 14 / 100) * Game.SCALE + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE , ((Game.HEIGHT * 81 / 100) * Game.SCALE) + 2);
+							break;
+						}				
+					}
+				}
+				
+			}
+		}
+	}
+}

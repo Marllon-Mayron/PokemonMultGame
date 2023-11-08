@@ -1,0 +1,120 @@
+======================================================================
+				Alpha 0.0.7
+//ADIÇÕES
+Adicionado sistema de evolução no game.
+Adicionado pedra de evolução.
+//CORREÇÃO DE BUGS
+Corrigido erro ao shiny evoluir
+Corrigido problema com nature, agora o nature é carregado todo nivel, coisa que não estava acontecendo antes.
+======================================================================
+				Alpha 0.0.6
+//ADIÇÕES
+Adicionado atalho para pokebola e itens.
+Adicionado novos recursos visuais para o game.
+Sistema de evento externo.
+Adicionado sistema de item em batalhas. Agora você pode dar um item pra seu pokemon.
+Adicionado 4 novos itens (X-atk, X-def, X-sp-atk, X-sp-def)
+Adicionado recurso grafico para a visualização do pokemon que está segurando item.
+Adicionado evento treinador eles tem 20% de chance de aparecer nas waves, e possuem um time que dão mais xp, score, e money.
+Balanceamento geral do jogo. mais de 6 horas de balanceamentos.
+Adicionado debugMode
+Adicionado pokemons "angrys" que atacam nossos pokemons, eles tem 20% de chance de aparecer nas waves, e tem um cooldown reduzido.
+//CORREÇÃO DE BUGS
+Corrigido problema com barra de vida ao usar poção.
+Corrigido erro de pokemons de treinadores contarem como parte da wave.
+Agora não é possivel iniciar partida sem pokemons no time.
+Corrigido Erro ao gerar pokemons no lvl 3
+Corrigido bug de pokemon travando o alvo em um pokemon que ja saiu do mapa
+Corrigido erro de thread não atualizava o cooldown, fazendo que os pokemons continuassem com o mesmo cooldown de quando foram gerados.
+======================================================================
+				Alpha 0.0.5
+//ADIÇÕES
+Agora a loja/pc não pode mais ser chamada pelo atalho P, pois agora só aparece dps que completa o level, e fica por 15 segundos.
+Loja adicionada, com itens aleatorios pra comprar.
+Adicionado sistema de arrastar o pokemon no mapa, e trocar de posição sem precisar traze-lo de volta pra pokebola.
+Adicionado sistema de itens
+Adicionado slot de item, podendo mudar qual item quer usar.
+Adicionado atalhos para o sistema de itens (W-S-A-D)
+
+Adicionado json de pokebola, contendo informações pra serem carregadas. arquivo se chama pokeball.json
+Adicionado json de medicine, contendo informações pra serem carregadas. arquivo se chama pokeball.json
+
+Refeito sistema de captura, agora é possivel capturar pokemons que não estejam com a vida abaixo de 25%
+Agora pokemons shinys não são capturados em 100% das vezes.
+
+Reorganizado sprites das pokebolas.
+
+Agora as pokebolas são itens, e não imagens estaticas.
+Adicionado probabilidade de captura das pokeballs.
+Adicionado Masterball, conseguindo capturar de primeira e sem precisar estar com vida baixa.Funciona apenas com pokemons capturaveis (LIFE BAR VERDE) 
+
+Agora podemos curar os pokemons.
+Adicionado sistema de medicine na navegação de itens.
+Adicionado Potion, Super potion e Hyper potion
+
+Adicionado novo level.
+Melhorado sistema de geradores de pokemon, agora podendo gerar mais de uma lista de pokemons por nivel.
+Adicionado 15 novos pokemons (Pidgeotto, Fearow, Scyther, Pinsir, Bellsprout, Tangela, Kangaskhan, Pidgeot, Weepinbell, Dougtrio, graveler, Onix, Rhyhorn, Marowak, Golem)
+//CORREÇÃO DE BUGS
+Corrigido erro de debuff infinito, quando saia do local de buff, o pokemon tomava mais nerf, em vez de voltar aos states originais.
+Adicionada validação para que não permita a troca com pokemons que nã pertecem a determinado local com buff.
+Organizado eventos do mouse, e comentando todos os seus metodos.
+======================================================================
+				Alpha 0.0.4
+//ADIÇÕES
+Agora matar boss da o dobro de gold.
+Melhorado a visualização dos locais onde coloca os pokemons, deixando-os transparentes.
+Aumentado o tamanho da pokebola, visto que estavam com muitos problemas pra capturar, a pokebola teve sua hitbox dobrada.
+Agora capturas de pokemon dão gold, e experiencia.
+Refeito o sistema de pc, agora com uma visualização detalhada das descrições, futuramente será substituido o atalho D, que mostra as descrições em tempo real.
+Adicionado novas paginas para o pc, juntamente com os botões pra passar as páginas.
+Visualização dos pokemons que estão na equipe principal, pelo pc.(imagine 8 caterpies, se um deles estiver na sua equipe principal, ele está com uma cor diferente)
+Adicionado sistema de deletar pokemons, uma opção dentro do pc.
+Adicionado sistema de troca de time, basta ir no pc, e arrastar o pokemon para o slot desejado.
+Adicionado novo level
+Adicionado 6 novos pokemons (Gloom, Ekans, Abra, Ghastly, Haunter, Meowth)
+
+OBS: O PC AINDA NÃO É UMA ETAPA DO GAME, SENDO PERMITIDO USA-LO ENQUANTO ESTIVER NO GAME. FUTURAMENTE O PC SÓ PODERÁ SER USADO DEPOIS DAS WAVES.
+
+//CORREÇÃO DE BUGS
+Corrigido falha no código que não reconhecia os bosses, desta forma, agora matar boss da o bonus de xp que ja estava programado
+Corrigido bug de pokemon grudado no outro
+Corrigido erro de ao arrastar o mouse, e travar a camera.
+Corrigido classe pokemon duplicada
+Corrigido erro de exportação
+Corrigido erro de 100% shinys.
+Corrigido erro que permitia capturar o pokemon do tutorial
+Corrigido problema com os pokemons saindo do limite do mapa
+======================================================================
+				Alpha 0.0.3
+//ADIÇÕES
+Adicionado Tutorial
+Adicionado novo level
+Melhorado a visualização dos slots com tipos especificos
+Visualização da Wave
+Visualização dos tipos do seu pokemon
+Adicionado 10 novos pokemons 8 capturaveis (Magikarp, Staryu, Goldeen, Seaking, Horsea, Shelder, Polliwag, tentacool, Starmie, Seadra)
+
+//CORREÇÃO DE BUGS
+Corrigido problema de pokebola ficar negativa
+
+======================================================================
+				Alpha 0.0.2
+//ADIÇÕES
+Implementado novo sistema de camera (Esperando testes)
+Adicionado novo level 
+Adicionado timers com threads, fazendo com que o jogo seja agora mult-threads, ajudando na performace do game.
+Melhorado todos os recursos gráficos
+Adicionado 11 novos pokemons 9 capturaveis (Nidoran-Nidorina-Nidoran-Nidorino-Oddish-Paras-Parasect-Venonat-Mankey-Ratata-Pikachu)
+
+Adicionado sistema de locais para tipos especificos.
+Buff de 10% para os pokemons do mesmo tipo do local onde será posicionado.
+Pokemons que não são do tipo não podem ser colocados 
+
+Melhorado a visualização dos stats dos pokemons (pelo atalho D)
+
+//CORREÇÃO DE BUGS 
+Resolvido problema de queda de FPS
+======================================================================
+
+

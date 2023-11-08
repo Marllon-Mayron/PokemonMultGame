@@ -1,0 +1,190 @@
+import requests
+import json
+
+# Função para obter o trigger name de um indivíduo na cadeia
+
+def get_item_name(chain_data):
+    if 'evolves_to' in chain_data and len(chain_data['evolves_to']) > 0:
+        item_data = chain_data['evolves_to'][0]['evolution_details'][0].get('item', None)
+        if item_data:
+          return item_data.get('name', 'Nenhum')
+    return 'Nenhum'
+ # Função para obter o nome da espécie de um indivíduo na cadeia
+def get_species_name(chain_data):
+    return chain_data['species']['name']
+def get_capture_rate(pokemon_name):
+  # URL da endpoint com os dados de evolução
+    species_url = f"https://pokeapi.co/api/v2/pokemon-species/{pokemon_name}/"
+    # Faça uma solicitação GET para a endpoint
+    response = requests.get(species_url)
+    if response.status_code == 200:
+      species_data = response.json()
+      return species_data['capture_rate']
+# Função para obter os dados de evolução de um Pokémon com base no ID
+def get_evolution_chain(pokemon_name):
+  # URL da endpoint com os dados de evolução
+    species_url = f"https://pokeapi.co/api/v2/pokemon-species/{pokemon_name}/"
+    # Faça uma solicitação GET para a endpoint
+    response = requests.get(species_url)
+
+    if response.status_code == 200:
+        species_data = response.json()
+        evolution_chain_url = species_data['evolution_chain']['url']
+        response = requests.get(evolution_chain_url)
+        if response.status_code == 200:
+            evolution_chain_data = response.json()
+            return evolution_chain_data['id']
+
+def get_all_family(pokemon_name):
+  # URL da endpoint com os dados de evolução
+    species_url = f"https://pokeapi.co/api/v2/pokemon-species/{pokemon_name}/"
+    # Faça uma solicitação GET para a endpoint
+    response = requests.get(species_url)
+
+    if response.status_code == 200:
+        species_data = response.json()
+        evolution_chain_url = species_data['evolution_chain']['url']
+
+        # Faça uma nova solicitação GET para a cadeia de evolução
+        response = requests.get(evolution_chain_url)
+
+        if response.status_code == 200:
+            evolution_chain_data = response.json()
+            # Obtenha a cadeia de evolução
+            chain = evolution_chain_data['chain']
+
+            i = 1
+            result = ''
+            while chain:
+                species_name = get_species_name(chain)
+                result = result + f"{species_name},"
+                if 'evolves_to' in chain and len(chain['evolves_to']) > 0:
+                    chain = chain['evolves_to'][0]
+                else:
+                    break
+                i += 1
+
+            return result[:-1] #retirando a ultima virgula
+
+        else:
+            return 'Error'
+
+    else:
+        return 'Error'
+#=====================================================================================================
+def get_infos(pokemon_name, info):
+    # Obter os dados da espécie do Pokémon
+    species_url = f"https://pokeapi.co/api/v2/pokemon-species/{pokemon_name.lower()}/"
+    response = requests.get(species_url)
+
+    if response.status_code == 200:
+        species_data = response.json()
+        evolution_chain_url = species_data['evolution_chain']['url']
+
+        # Obter os dados da cadeia de evolução
+        response = requests.get(evolution_chain_url)
+
+        if response.status_code == 200:
+            evolution_chain_data = response.json()
+            def find_trigger_name(chain_data):
+              if 'evolves_to' in chain_data and len(chain_data['evolves_to']) > 0:
+                trigger_data = chain_data['evolves_to'][0]['evolution_details'][0].get('trigger', {})
+                return trigger_data.get('name', 'Nenhum')
+              return 'Nenhum'
+            # Função para percorrer os detalhes da cadeia de evolução
+            def find_minimum_happiness(chain_data):
+                if 'evolves_to' in chain_data and len(chain_data['evolves_to']) > 0:
+                    details = chain_data['evolves_to'][0]['evolution_details']
+                    for detail in details:
+                        if 'min_happiness' in detail and detail['min_happiness'] is not None:
+                            return detail['min_happiness']
+                return None
+             # Função para percorrer os detalhes da cadeia de evolução
+            def find_minimum_level(chain_data):
+                if 'evolves_to' in chain_data and len(chain_data['evolves_to']) > 0:
+                    details = chain_data['evolves_to'][0]['evolution_details']
+                    for detail in details:
+                        if 'min_level' in detail and detail['min_level'] is not None:
+                            return detail['min_level']
+                return None
+            def find_known_move(chain_data):
+              if 'evolves_to' in chain_data and len(chain_data['evolves_to']) > 0:
+                known_move_data = chain_data['evolves_to'][0]['evolution_details'][0].get('known_move', {})
+                if known_move_data is not None:
+                  return known_move_data.get('name', 'Nenhum')
+              return 'null'
+            # Percorrer a cadeia de evolução
+            chain = evolution_chain_data['chain']
+            while chain:
+                species_name = get_species_name(chain)
+                if species_name == pokemon_name:
+                  if(info == 'happiness'):
+                    min_happiness = find_minimum_happiness(chain)
+                    if min_happiness is not None:
+                        return min_happiness
+                  elif(info == 'min_level'):
+                    min_level = find_minimum_level(chain)
+                    if min_level is not None:
+                        return min_level
+                  elif(info == 'item_name'):
+                    return get_item_name(chain)
+
+                  elif(info == 'trigger_name'):
+                    return find_trigger_name(chain)
+                  elif(info == 'known_move'):
+                    return find_known_move(chain)
+                if 'evolves_to' in chain and len(chain['evolves_to']) > 0:
+                    chain = chain['evolves_to'][0]
+                else:
+                    break
+
+    return None
+# Função para obter dados de um Pokémon com base no ID
+def get_pokemon_data(pokemon_id):
+    url = f"https://pokeapi.co/api/v2/pokemon/{pokemon_id}/"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        types = [t['type']['name'] for t in data['types']]
+        stats = {stat['stat']['name']: stat['base_stat'] for stat in data['stats']}
+        evs = {stat['stat']['name']: stat['effort'] for stat in data['stats']}
+        all_family_members = get_all_family(data["name"])
+        trigger_name = get_infos(data["name"], 'trigger_name')
+        item_name = get_infos(data["name"],'item_name')
+        evolution_chain_id = get_evolution_chain(data["name"])
+        min_level = get_infos(data["name"], 'min_level')
+        min_happiness = get_infos(data["name"], 'happiness')
+        rate = get_capture_rate(data["name"])
+        known_move = get_infos(data["name"], 'known_move')
+        print(str(data["id"]) + "-" + data["name"])
+        return {
+            "id": data["id"],
+            "name": data["name"],
+            "type": types,
+            "base": stats,
+            "ev": evs,
+            "rate": rate,
+            "Evolucao": {
+                "all_family_members": all_family_members,
+                "trigger_name": trigger_name,
+                "item_name": item_name,
+                "evolution_chain_id": evolution_chain_id,
+                "min_level": min_level,
+                "min_happiness": min_happiness,
+                "known_move": known_move
+            }
+        }
+    else:
+        print(f"Erro ao obter dados do Pokémon {pokemon_id}")
+        return None
+
+# Obtenha os dados dos três primeiros Pokémon
+pokemon_data_list = []
+for i in range(1, 152):
+    pokemon_data = get_pokemon_data(i)
+    if pokemon_data:
+        pokemon_data_list.append(pokemon_data)
+
+# Salve os dados em um arquivo JSON
+with open("pokemon_data.json", "w") as json_file:
+    json.dump(pokemon_data_list, json_file, indent=4)
