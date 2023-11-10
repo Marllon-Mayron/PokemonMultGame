@@ -2,6 +2,8 @@
     {
         "id": 1,
         "name": "bulbasaur",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "grass",
             "poison"
@@ -36,6 +38,8 @@
     {
         "id": 2,
         "name": "ivysaur",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "grass",
             "poison"
@@ -70,6 +74,8 @@
     {
         "id": 3,
         "name": "venusaur",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "grass",
             "poison"
@@ -104,6 +110,8 @@
     {
         "id": 4,
         "name": "charmander",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fire"
         ],
@@ -137,6 +145,8 @@
     {
         "id": 5,
         "name": "charmeleon",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fire"
         ],
@@ -170,6 +180,8 @@
     {
         "id": 6,
         "name": "charizard",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fire",
             "flying"
@@ -204,6 +216,8 @@
     {
         "id": 7,
         "name": "squirtle",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water"
         ],
@@ -237,6 +251,8 @@
     {
         "id": 8,
         "name": "wartortle",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water"
         ],
@@ -270,6 +286,8 @@
     {
         "id": 9,
         "name": "blastoise",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water"
         ],
@@ -303,6 +321,8 @@
     {
         "id": 10,
         "name": "caterpie",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "bug"
         ],
@@ -336,6 +356,8 @@
     {
         "id": 11,
         "name": "metapod",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "bug"
         ],
@@ -369,6 +391,8 @@
     {
         "id": 12,
         "name": "butterfree",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "bug",
             "flying"
@@ -403,6 +427,8 @@
     {
         "id": 13,
         "name": "weedle",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "bug",
             "poison"
@@ -437,6 +463,8 @@
     {
         "id": 14,
         "name": "kakuna",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "bug",
             "poison"
@@ -471,6 +499,8 @@
     {
         "id": 15,
         "name": "beedrill",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "bug",
             "poison"
@@ -505,6 +535,8 @@
     {
         "id": 16,
         "name": "pidgey",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal",
             "flying"
@@ -539,6 +571,8 @@
     {
         "id": 17,
         "name": "pidgeotto",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal",
             "flying"
@@ -573,6 +607,8 @@
     {
         "id": 18,
         "name": "pidgeot",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal",
             "flying"
@@ -607,6 +643,8 @@
     {
         "id": 19,
         "name": "rattata",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal"
         ],
@@ -640,6 +678,8 @@
     {
         "id": 20,
         "name": "raticate",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal"
         ],
@@ -673,6 +713,8 @@
     {
         "id": 21,
         "name": "spearow",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal",
             "flying"
@@ -707,6 +749,8 @@
     {
         "id": 22,
         "name": "fearow",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal",
             "flying"
@@ -741,6 +785,8 @@
     {
         "id": 23,
         "name": "ekans",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "poison"
         ],
@@ -774,6 +820,8 @@
     {
         "id": 24,
         "name": "arbok",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "poison"
         ],
@@ -807,6 +855,8 @@
     {
         "id": 25,
         "name": "pikachu",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "electric"
         ],
@@ -840,6 +890,8 @@
     {
         "id": 26,
         "name": "raichu",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "electric"
         ],
@@ -873,6 +925,8 @@
     {
         "id": 27,
         "name": "sandshrew",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "ground"
         ],
@@ -906,6 +960,8 @@
     {
         "id": 28,
         "name": "sandslash",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "ground"
         ],
@@ -939,6 +995,8 @@
     {
         "id": 29,
         "name": "nidoran-f",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "poison"
         ],
@@ -972,6 +1030,8 @@
     {
         "id": 30,
         "name": "nidorina",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "poison"
         ],
@@ -1005,6 +1065,8 @@
     {
         "id": 31,
         "name": "nidoqueen",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "poison",
             "ground"
@@ -1039,6 +1101,8 @@
     {
         "id": 32,
         "name": "nidoran-m",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "poison"
         ],
@@ -1072,6 +1136,8 @@
     {
         "id": 33,
         "name": "nidorino",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "poison"
         ],
@@ -1105,6 +1171,8 @@
     {
         "id": 34,
         "name": "nidoking",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "poison",
             "ground"
@@ -1139,6 +1207,8 @@
     {
         "id": 35,
         "name": "clefairy",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fairy"
         ],
@@ -1172,6 +1242,8 @@
     {
         "id": 36,
         "name": "clefable",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fairy"
         ],
@@ -1205,6 +1277,8 @@
     {
         "id": 37,
         "name": "vulpix",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fire"
         ],
@@ -1238,6 +1312,8 @@
     {
         "id": 38,
         "name": "ninetales",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fire"
         ],
@@ -1271,6 +1347,8 @@
     {
         "id": 39,
         "name": "jigglypuff",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal",
             "fairy"
@@ -1305,6 +1383,8 @@
     {
         "id": 40,
         "name": "wigglytuff",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal",
             "fairy"
@@ -1339,6 +1419,8 @@
     {
         "id": 41,
         "name": "zubat",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "poison",
             "flying"
@@ -1373,6 +1455,8 @@
     {
         "id": 42,
         "name": "golbat",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "poison",
             "flying"
@@ -1407,6 +1491,8 @@
     {
         "id": 43,
         "name": "oddish",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "grass",
             "poison"
@@ -1441,6 +1527,8 @@
     {
         "id": 44,
         "name": "gloom",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "grass",
             "poison"
@@ -1475,6 +1563,8 @@
     {
         "id": 45,
         "name": "vileplume",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "grass",
             "poison"
@@ -1509,6 +1599,8 @@
     {
         "id": 46,
         "name": "paras",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "bug",
             "grass"
@@ -1543,6 +1635,8 @@
     {
         "id": 47,
         "name": "parasect",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "bug",
             "grass"
@@ -1577,6 +1671,8 @@
     {
         "id": 48,
         "name": "venonat",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "bug",
             "poison"
@@ -1611,6 +1707,8 @@
     {
         "id": 49,
         "name": "venomoth",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "bug",
             "poison"
@@ -1645,6 +1743,8 @@
     {
         "id": 50,
         "name": "diglett",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "ground"
         ],
@@ -1678,6 +1778,8 @@
     {
         "id": 51,
         "name": "dugtrio",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "ground"
         ],
@@ -1711,6 +1813,8 @@
     {
         "id": 52,
         "name": "meowth",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal"
         ],
@@ -1744,6 +1848,8 @@
     {
         "id": 53,
         "name": "persian",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal"
         ],
@@ -1777,6 +1883,8 @@
     {
         "id": 54,
         "name": "psyduck",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water"
         ],
@@ -1810,6 +1918,8 @@
     {
         "id": 55,
         "name": "golduck",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water"
         ],
@@ -1843,6 +1953,8 @@
     {
         "id": 56,
         "name": "mankey",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fighting"
         ],
@@ -1876,6 +1988,8 @@
     {
         "id": 57,
         "name": "primeape",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fighting"
         ],
@@ -1909,6 +2023,8 @@
     {
         "id": 58,
         "name": "growlithe",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fire"
         ],
@@ -1942,6 +2058,8 @@
     {
         "id": 59,
         "name": "arcanine",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fire"
         ],
@@ -1975,6 +2093,8 @@
     {
         "id": 60,
         "name": "poliwag",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water"
         ],
@@ -2008,6 +2128,8 @@
     {
         "id": 61,
         "name": "poliwhirl",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water"
         ],
@@ -2041,6 +2163,8 @@
     {
         "id": 62,
         "name": "poliwrath",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water",
             "fighting"
@@ -2075,6 +2199,8 @@
     {
         "id": 63,
         "name": "abra",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "psychic"
         ],
@@ -2108,6 +2234,8 @@
     {
         "id": 64,
         "name": "kadabra",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "psychic"
         ],
@@ -2141,6 +2269,8 @@
     {
         "id": 65,
         "name": "alakazam",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "psychic"
         ],
@@ -2174,6 +2304,8 @@
     {
         "id": 66,
         "name": "machop",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fighting"
         ],
@@ -2207,6 +2339,8 @@
     {
         "id": 67,
         "name": "machoke",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fighting"
         ],
@@ -2240,6 +2374,8 @@
     {
         "id": 68,
         "name": "machamp",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fighting"
         ],
@@ -2273,6 +2409,8 @@
     {
         "id": 69,
         "name": "bellsprout",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "grass",
             "poison"
@@ -2307,6 +2445,8 @@
     {
         "id": 70,
         "name": "weepinbell",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "grass",
             "poison"
@@ -2341,6 +2481,8 @@
     {
         "id": 71,
         "name": "victreebel",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "grass",
             "poison"
@@ -2375,6 +2517,8 @@
     {
         "id": 72,
         "name": "tentacool",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water",
             "poison"
@@ -2409,6 +2553,8 @@
     {
         "id": 73,
         "name": "tentacruel",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water",
             "poison"
@@ -2443,6 +2589,8 @@
     {
         "id": 74,
         "name": "geodude",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "rock",
             "ground"
@@ -2477,6 +2625,8 @@
     {
         "id": 75,
         "name": "graveler",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "rock",
             "ground"
@@ -2511,6 +2661,8 @@
     {
         "id": 76,
         "name": "golem",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "rock",
             "ground"
@@ -2545,6 +2697,8 @@
     {
         "id": 77,
         "name": "ponyta",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fire"
         ],
@@ -2578,6 +2732,8 @@
     {
         "id": 78,
         "name": "rapidash",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fire"
         ],
@@ -2611,6 +2767,8 @@
     {
         "id": 79,
         "name": "slowpoke",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water",
             "psychic"
@@ -2645,6 +2803,8 @@
     {
         "id": 80,
         "name": "slowbro",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water",
             "psychic"
@@ -2679,6 +2839,8 @@
     {
         "id": 81,
         "name": "magnemite",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "electric",
             "steel"
@@ -2713,6 +2875,8 @@
     {
         "id": 82,
         "name": "magneton",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "electric",
             "steel"
@@ -2747,6 +2911,8 @@
     {
         "id": 83,
         "name": "farfetchd",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal",
             "flying"
@@ -2781,6 +2947,8 @@
     {
         "id": 84,
         "name": "doduo",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal",
             "flying"
@@ -2815,6 +2983,8 @@
     {
         "id": 85,
         "name": "dodrio",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal",
             "flying"
@@ -2849,6 +3019,8 @@
     {
         "id": 86,
         "name": "seel",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water"
         ],
@@ -2882,6 +3054,8 @@
     {
         "id": 87,
         "name": "dewgong",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water",
             "ice"
@@ -2916,6 +3090,8 @@
     {
         "id": 88,
         "name": "grimer",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "poison"
         ],
@@ -2949,6 +3125,8 @@
     {
         "id": 89,
         "name": "muk",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "poison"
         ],
@@ -2982,6 +3160,8 @@
     {
         "id": 90,
         "name": "shellder",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water"
         ],
@@ -3015,6 +3195,8 @@
     {
         "id": 91,
         "name": "cloyster",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water",
             "ice"
@@ -3049,6 +3231,8 @@
     {
         "id": 92,
         "name": "gastly",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "ghost",
             "poison"
@@ -3083,6 +3267,8 @@
     {
         "id": 93,
         "name": "haunter",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "ghost",
             "poison"
@@ -3117,6 +3303,8 @@
     {
         "id": 94,
         "name": "gengar",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "ghost",
             "poison"
@@ -3151,6 +3339,8 @@
     {
         "id": 95,
         "name": "onix",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "rock",
             "ground"
@@ -3185,6 +3375,8 @@
     {
         "id": 96,
         "name": "drowzee",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "psychic"
         ],
@@ -3218,6 +3410,8 @@
     {
         "id": 97,
         "name": "hypno",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "psychic"
         ],
@@ -3251,6 +3445,8 @@
     {
         "id": 98,
         "name": "krabby",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water"
         ],
@@ -3284,6 +3480,8 @@
     {
         "id": 99,
         "name": "kingler",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water"
         ],
@@ -3317,6 +3515,8 @@
     {
         "id": 100,
         "name": "voltorb",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "electric"
         ],
@@ -3350,6 +3550,8 @@
     {
         "id": 101,
         "name": "electrode",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "electric"
         ],
@@ -3383,6 +3585,8 @@
     {
         "id": 102,
         "name": "exeggcute",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "grass",
             "psychic"
@@ -3417,6 +3621,8 @@
     {
         "id": 103,
         "name": "exeggutor",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "grass",
             "psychic"
@@ -3451,6 +3657,8 @@
     {
         "id": 104,
         "name": "cubone",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "ground"
         ],
@@ -3484,6 +3692,8 @@
     {
         "id": 105,
         "name": "marowak",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "ground"
         ],
@@ -3517,6 +3727,8 @@
     {
         "id": 106,
         "name": "hitmonlee",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fighting"
         ],
@@ -3550,6 +3762,8 @@
     {
         "id": 107,
         "name": "hitmonchan",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fighting"
         ],
@@ -3583,6 +3797,8 @@
     {
         "id": 108,
         "name": "lickitung",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal"
         ],
@@ -3616,6 +3832,8 @@
     {
         "id": 109,
         "name": "koffing",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "poison"
         ],
@@ -3649,6 +3867,8 @@
     {
         "id": 110,
         "name": "weezing",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "poison"
         ],
@@ -3682,6 +3902,8 @@
     {
         "id": 111,
         "name": "rhyhorn",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "ground",
             "rock"
@@ -3716,6 +3938,8 @@
     {
         "id": 112,
         "name": "rhydon",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "ground",
             "rock"
@@ -3750,6 +3974,8 @@
     {
         "id": 113,
         "name": "chansey",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal"
         ],
@@ -3783,6 +4009,8 @@
     {
         "id": 114,
         "name": "tangela",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "grass"
         ],
@@ -3816,6 +4044,8 @@
     {
         "id": 115,
         "name": "kangaskhan",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal"
         ],
@@ -3849,6 +4079,8 @@
     {
         "id": 116,
         "name": "horsea",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water"
         ],
@@ -3882,6 +4114,8 @@
     {
         "id": 117,
         "name": "seadra",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water"
         ],
@@ -3915,6 +4149,8 @@
     {
         "id": 118,
         "name": "goldeen",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water"
         ],
@@ -3948,6 +4184,8 @@
     {
         "id": 119,
         "name": "seaking",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water"
         ],
@@ -3981,6 +4219,8 @@
     {
         "id": 120,
         "name": "staryu",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water"
         ],
@@ -4014,6 +4254,8 @@
     {
         "id": 121,
         "name": "starmie",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water",
             "psychic"
@@ -4048,6 +4290,8 @@
     {
         "id": 122,
         "name": "mr-mime",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "psychic",
             "fairy"
@@ -4082,6 +4326,8 @@
     {
         "id": 123,
         "name": "scyther",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "bug",
             "flying"
@@ -4116,6 +4362,8 @@
     {
         "id": 124,
         "name": "jynx",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "ice",
             "psychic"
@@ -4150,6 +4398,8 @@
     {
         "id": 125,
         "name": "electabuzz",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "electric"
         ],
@@ -4183,6 +4433,8 @@
     {
         "id": 126,
         "name": "magmar",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fire"
         ],
@@ -4216,6 +4468,8 @@
     {
         "id": 127,
         "name": "pinsir",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "bug"
         ],
@@ -4249,6 +4503,8 @@
     {
         "id": 128,
         "name": "tauros",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal"
         ],
@@ -4282,6 +4538,8 @@
     {
         "id": 129,
         "name": "magikarp",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water"
         ],
@@ -4315,6 +4573,8 @@
     {
         "id": 130,
         "name": "gyarados",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water",
             "flying"
@@ -4349,6 +4609,8 @@
     {
         "id": 131,
         "name": "lapras",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water",
             "ice"
@@ -4383,6 +4645,8 @@
     {
         "id": 132,
         "name": "ditto",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal"
         ],
@@ -4416,6 +4680,8 @@
     {
         "id": 133,
         "name": "eevee",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal"
         ],
@@ -4449,6 +4715,8 @@
     {
         "id": 134,
         "name": "vaporeon",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "water"
         ],
@@ -4482,6 +4750,8 @@
     {
         "id": 135,
         "name": "jolteon",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "electric"
         ],
@@ -4515,6 +4785,8 @@
     {
         "id": 136,
         "name": "flareon",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "fire"
         ],
@@ -4548,6 +4820,8 @@
     {
         "id": 137,
         "name": "porygon",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal"
         ],
@@ -4581,6 +4855,8 @@
     {
         "id": 138,
         "name": "omanyte",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "rock",
             "water"
@@ -4615,6 +4891,8 @@
     {
         "id": 139,
         "name": "omastar",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "rock",
             "water"
@@ -4649,6 +4927,8 @@
     {
         "id": 140,
         "name": "kabuto",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "rock",
             "water"
@@ -4683,6 +4963,8 @@
     {
         "id": 141,
         "name": "kabutops",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "rock",
             "water"
@@ -4717,6 +4999,8 @@
     {
         "id": 142,
         "name": "aerodactyl",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "rock",
             "flying"
@@ -4751,6 +5035,8 @@
     {
         "id": 143,
         "name": "snorlax",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "normal"
         ],
@@ -4784,6 +5070,8 @@
     {
         "id": 144,
         "name": "articuno",
+        "is_legendary": true,
+        "is_mythical": false,
         "type": [
             "ice",
             "flying"
@@ -4818,6 +5106,8 @@
     {
         "id": 145,
         "name": "zapdos",
+        "is_legendary": true,
+        "is_mythical": false,
         "type": [
             "electric",
             "flying"
@@ -4852,6 +5142,8 @@
     {
         "id": 146,
         "name": "moltres",
+        "is_legendary": true,
+        "is_mythical": false,
         "type": [
             "fire",
             "flying"
@@ -4886,6 +5178,8 @@
     {
         "id": 147,
         "name": "dratini",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "dragon"
         ],
@@ -4919,6 +5213,8 @@
     {
         "id": 148,
         "name": "dragonair",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "dragon"
         ],
@@ -4952,6 +5248,8 @@
     {
         "id": 149,
         "name": "dragonite",
+        "is_legendary": false,
+        "is_mythical": false,
         "type": [
             "dragon",
             "flying"
@@ -4986,6 +5284,8 @@
     {
         "id": 150,
         "name": "mewtwo",
+        "is_legendary": true,
+        "is_mythical": false,
         "type": [
             "psychic"
         ],
@@ -5019,6 +5319,8 @@
     {
         "id": 151,
         "name": "mew",
+        "is_legendary": false,
+        "is_mythical": true,
         "type": [
             "psychic"
         ],

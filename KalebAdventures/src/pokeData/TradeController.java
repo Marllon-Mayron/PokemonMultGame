@@ -13,28 +13,73 @@ public class TradeController {
 	public List<Pokemon> sameOfferList = new ArrayList<Pokemon>();
 	Pokemon requested, offered;
 	public Pokemon chosen;
+	public boolean offertOn = true;
+	
 	public List<SlotTrade> slotList = new ArrayList<SlotTrade>();
 	public TradeController() {
-		for(int i = 0; i < 6; i++) {
-		 
-			SlotTrade st = new SlotTrade((Game.WIDTH * 14 / 100) * Game.SCALE + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 81 / 100) * Game.SCALE) + 2,(Game.WIDTH * 10 / 100) * Game.SCALE, 70, null);
+		createNewSlotList();
+	}
+	public void createNewSlotList() {
+		for(int i = 0; i < 6; i++) { 
+			SlotTrade st = new SlotTrade((Game.WIDTH * 14 / 100) * Game.SCALE + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE , ((Game.HEIGHT * 81 / 100) * Game.SCALE) + 2,(Game.WIDTH * 10 / 100) * Game.SCALE, 70, null);
 			slotList.add(st);
 		}
 	}
-
 	public void populateNpcTrade() {
-		offered = new Pokemon(0, 0, 5, 5, null, false, 4, 5, false);
-		requested = new Pokemon(0, 0, 5, 5, null, false, 10, 5, false);
 		
+		Game.ui.pkmOffer.clear();
+		int tradeOption = 0;
+		//0 = pokemon aleatorio, 1 - pokemon da minha lista, 2 - pokemons que ja passaram no mapa.
+		if(Game.random.nextInt(100)+1 < 101) {
+			tradeOption = 1;
+		}
+		
+		while(true) {
+			while(true) {
+				offered = new Pokemon(0, 0, 5, 5, null, false, Game.random.nextInt(Game.pokedex.maxId-1)+1, 5, false);
+				if(!(offered.isLegendary || offered.isMythical)) {
+					break;
+				}
+			}
+			while(true) {
+				
+				if(tradeOption == 1) {
+					Pokemon p = Game.pokeList.get(Game.random.nextInt(Game.pokeList.size()));
+					requested = new Pokemon(0, 0, 5, 5, null, false, p.id , 5, false);
+					if(!(requested.isLegendary || requested.isMythical)) {
+						break;
+					}
+				}else{
+					requested = new Pokemon(0, 0, 5, 5, null, false, Game.random.nextInt(Game.pokedex.maxId-1)+1, 5, false);
+					if(!(requested.isLegendary || requested.isMythical)) {
+						break;
+					}
+				}	
+				
+			}
+
+			if(offered.totalStates >= requested.totalStates - 30 && offered.totalStates <= requested.totalStates + 30) {
+				break;
+			}
+		}
+		Game.tradeController.offertOn = true;
 		Game.ui.pkmOffer.add(offered);
 		Game.ui.pkmOffer.add(requested);
 	}
 	public void populateSameOffer(){
+		slotList.clear();
+		createNewSlotList();
 		sameOfferList.clear();
 		for(int i = 0; i < Game.pokeList.size(); i++) {
 			if(Game.pokeList.get(i).id == requested.id) {
+				for(int i2 = 0; i2 < slotList.size(); i2++) {
+					if(slotList.get(i2).pokemon == null) {
+						slotList.get(i2).pokemon = Game.pokeList.get(i);
+						break;
+					}
+				}
 				sameOfferList.add(Game.pokeList.get(i));
-				slotList.get(i).pokemon = Game.pokeList.get(i);
+				;
 			}
 		}
 	}
@@ -52,8 +97,7 @@ public class TradeController {
 						Game.pokeList.set(i, offered);
 						for(int k = 0; k < Game.slotPcList.size(); k++) {
 							if(Game.slotPcList.get(k).pokemon.equals(pkm)) {
-								Game.slotPcList.get(k).pokemon = offered;
-								
+								Game.slotPcList.get(k).pokemon = offered;							
 								break;
 							}
 						}
@@ -65,7 +109,11 @@ public class TradeController {
 				
 			}
 		}
+		offertOn = false;
 		sameOfferList.clear();
+		for(int i = 0; i < slotList.size(); i++) {
+			slotList.get(i).pokemon = null;
+		}
 	}
 	public void render(Graphics g) {
 		if(sameOfferList.size() > 0 && Game.gameState == 2 && Game.ui.pcView == 2) {

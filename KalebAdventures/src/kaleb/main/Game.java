@@ -339,11 +339,24 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 			if(tutorialSteps == 0) {
 				tutorialSteps++;					
 			}else if(tutorialSteps == 1) {
-				Pokemon inicial;
-				inicial = new Pokemon(0, 0, 5, 5, null, false, 10, 20, false);
-				inicial.inMap = false;
-				pokeList.add(inicial);
-				slotList.get(0).setPokemon(inicial);
+				int i = 0;
+				while(i < 1) {
+					Pokemon inicial;
+					inicial = new Pokemon(0, 0, 5, 5, null, false, ui.startSelect, 5, false);
+					inicial.inMap = false;
+					pokeList.add(inicial);
+					slotList.get(i).setPokemon(inicial);
+					slotPcList.get(i).pokemon = inicial;
+					slotPcList.get(i).sprite = pokedex.getSprite(inicial.id, "front", inicial.isShiny);
+					i++;
+				}
+				int inicialOposto = 1;
+				if(ui.startSelect == 1) {
+					inicialOposto = 4;
+				}else if(ui.startSelect == 4) {
+					inicialOposto = 7;
+				}
+				lvlConfig.get(currentLvl).routePokemonBossList[0][0] = inicialOposto+"-200";
 				lvlConfig.get(currentLvl).generateLocale();
 				lvlConfig.get(currentLvl).generateLvl();
 				gameState = 1;
@@ -356,8 +369,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 				Player.medicineItemList.add(potion);
 				Player.battleItemList.add(bItem);
 				tutorialSteps++;	
-				slotPcList.get(0).pokemon = inicial;
-				slotPcList.get(0).sprite = pokedex.getSprite(inicial.id, "front", inicial.isShiny);
+				
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_Q) {
@@ -543,39 +555,18 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 				//SETAS DE ITENS
 				slotItemNavegation();
 			}else if(ui.pcView == 2) {
-				if(Game.player.x > (int)(Game.WIDTH * 4.3 / 100) && player.x < (int)(Game.WIDTH * 4.3 / 100) +  (Game.WIDTH * 10 / 100)) {
-					if(player.y > Game.HEIGHT * 40 / 100 && player.y < Game.HEIGHT * 40 / 100 + 70/3) {
-						tradeController.populateSameOffer();
-					}
-				}
-				//
-				if(player.x >= (int)(Game.WIDTH * 9.5 / 100) && player.x <= (int)(Game.WIDTH * 9.5 / 100) + (Game.WIDTH * 15 / 100)) {
-					if(player.y >= Game.HEIGHT * 62 / 100 && player.y <= Game.HEIGHT * 62 / 100 + 10) {
-						for(int i = 0; i < tradeController.slotList.size(); i++) {
-							if(tradeController.slotList.get(i).selected) {
-								 tradeController.tradeAccept(tradeController.slotList.get(i).pokemon);
-								 break;
-							}
-							
-						}
-						
-					}
+				if(tradeController.offertOn){
+					//VISUALIZA OPÇÕES POSSIVEIS PARA AS TROCAS
+					viewTradeOptions();
 					
+					//FAZER A TROCA
+					btnTrade();
+					
+					//ESCOLHER PARA A TROCA
+					choiceTrade();
+		
 				}
-				if(tradeController.slotList.size() > 0) {
-					for(int i = 0; i < tradeController.slotList.size(); i++) {
-						if(player.x > (tradeController.slotList.get(i).x)/SCALE && player.x < (tradeController.slotList.get(i).x)/SCALE + (tradeController.slotList.get(i).getWidth())/SCALE) {
-							if(player.y > (tradeController.slotList.get(i).y)/SCALE && player.y < (tradeController.slotList.get(i).y)/SCALE + (tradeController.slotList.get(i).getHeight())/SCALE) {
-								for(int j = 0; j < tradeController.slotList.size(); j++) {
-									tradeController.slotList.get(j).selected = false;
-								}
-								tradeController.chosen = tradeController.sameOfferList.get(i);
-								tradeController.slotList.get(i).selected = true;
-							}
 						}
-					}
-				}
-			}
 			
 		}
 		
@@ -588,6 +579,51 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 
 
 
+	private void choiceTrade() {
+		if(tradeController.slotList.size() > 0) {
+			for(int i = 0; i < tradeController.slotList.size(); i++) {
+				if(tradeController.slotList.get(i).pokemon != null){
+					if(player.x > (tradeController.slotList.get(i).x)/SCALE && player.x < (tradeController.slotList.get(i).x)/SCALE + (tradeController.slotList.get(i).getWidth())/SCALE) {
+						if(player.y > (tradeController.slotList.get(i).y)/SCALE && player.y < (tradeController.slotList.get(i).y)/SCALE + (tradeController.slotList.get(i).getHeight())/SCALE) {
+							
+							for(int j = 0; j < tradeController.slotList.size(); j++) {
+								tradeController.slotList.get(j).selected = false;
+							}
+							tradeController.chosen = tradeController.sameOfferList.get(i);
+							tradeController.slotList.get(i).selected = true;
+							
+						}
+					}
+				 }
+			}
+		}
+		// TODO Auto-generated method stub
+		
+	}
+	private void btnTrade() {
+		// TODO Auto-generated method stub
+		if(player.x >= (int)(Game.WIDTH * 9.5 / 100) && player.x <= (int)(Game.WIDTH * 9.5 / 100) + (Game.WIDTH * 15 / 100)) {
+			if(player.y >= Game.HEIGHT * 62 / 100 && player.y <= Game.HEIGHT * 62 / 100 + 10) {
+				for(int i = 0; i < tradeController.slotList.size(); i++) {
+					for(int j = 0; j < tradeController.slotList.size(); j++) {
+						if(tradeController.slotList.get(j).selected == true){
+							if(tradeController.slotList.get(i).selected) {
+								 tradeController.tradeAccept(tradeController.slotList.get(i).pokemon);
+								 break;
+							}
+						}
+					}			
+				}
+			}
+		}
+	}
+	private void viewTradeOptions() {
+		if(Game.player.x > (int)(Game.WIDTH * 4.3 / 100) && player.x < (int)(Game.WIDTH * 4.3 / 100) +  (Game.WIDTH * 10 / 100)) {
+			if(player.y > Game.HEIGHT * 40 / 100 && player.y < Game.HEIGHT * 40 / 100 + 70/3) {
+				tradeController.populateSameOffer();
+			}
+		}
+	}
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub

@@ -91,7 +91,7 @@ public class LevelsConfigs {
 		//ROTAS QUE OS POKEMONS SELVAGENS IRÃO FAZER (LEFT-RIGHT-DOWN-TOP)
 		codeRoute[0][0] = "D-240";
 		//ID DOS POKEMONS QUE APARECEM NA ROTA, E SUAS PROBABILIDADES
-		routePokemonList[0][0] = "1-33,4-33,7-34";
+		routePokemonList[0][0] = "1-66,4-66,7-68";
 		//O MESMO, SÓ QUE PARA OS BOSS
 		routePokemonBossList[0][0] = "1-66,4-66,7-68";
 		//QUANTIDADE DE GERADORES DE POKEMON NO LEVEL

@@ -168,20 +168,28 @@ public class UI {
 				g.fillRect((int)(Game.WIDTH * 69.3 / 100 * Game.SCALE), Game.HEIGHT * 20 / 100 * Game.SCALE, (int) (Game.WIDTH * 28 / 100 * Game.SCALE), Game.HEIGHT * 54 / 100 * Game.SCALE);
 				
 				g.setColor(Color.black);
-				g.drawRect((int)(Game.WIDTH * 4.3 / 100 * Game.SCALE), Game.HEIGHT * 40 / 100 * Game.SCALE, (Game.WIDTH * 10 / 100) * Game.SCALE, 70);
-				g.drawRect((int)(Game.WIDTH * 20 / 100 * Game.SCALE), Game.HEIGHT * 40 / 100 * Game.SCALE, (Game.WIDTH * 10 / 100) * Game.SCALE, 70);
-				g.drawRect((int)(Game.WIDTH * 9.5 / 100 * Game.SCALE), Game.HEIGHT * 62 / 100 * Game.SCALE, (Game.WIDTH * 15 / 100) * Game.SCALE, 30);
+				g.drawString("TRADE COM NPC", (int)(Game.WIDTH * 11 / 100 * Game.SCALE), Game.HEIGHT * 26 / 100 * Game.SCALE);
 				
-				
-				if(pkmOffer.get(0).nm != null) {
-					g.drawString(pkmOffer.get(0).nm, (int)(Game.WIDTH * 20 / 100 * Game.SCALE), Game.HEIGHT * 38 / 100 * Game.SCALE);
-					g.drawImage(Game.pokedex.getSprite(pkmOffer.get(0).id, "front", pkmOffer.get(0).isShiny),(int)(Game.WIDTH * 18.5 / 100 * Game.SCALE), Game.HEIGHT * 38 / 100 * Game.SCALE,null);
+				if(Game.tradeController.offertOn) {
+					g.drawRect((int)(Game.WIDTH * 4.3 / 100 * Game.SCALE), Game.HEIGHT * 40 / 100 * Game.SCALE, (Game.WIDTH * 10 / 100) * Game.SCALE, 70);
+					g.drawRect((int)(Game.WIDTH * 20 / 100 * Game.SCALE), Game.HEIGHT * 40 / 100 * Game.SCALE, (Game.WIDTH * 10 / 100) * Game.SCALE, 70);
+					g.drawRect((int)(Game.WIDTH * 9.5 / 100 * Game.SCALE), Game.HEIGHT * 62 / 100 * Game.SCALE, (Game.WIDTH * 15 / 100) * Game.SCALE, 30);
+					g.drawString("TRADE", (int)(Game.WIDTH * 14.5 / 100 * Game.SCALE), Game.HEIGHT * 66 / 100 * Game.SCALE);
 					
-				}if(pkmOffer.get(1).nm != null) {
-					g.drawString(pkmOffer.get(1).nm, (int)(Game.WIDTH * 4.3 / 100 * Game.SCALE), Game.HEIGHT * 38 / 100 * Game.SCALE);
-					g.drawImage(Game.pokedex.getSprite(pkmOffer.get(1).id, "front", pkmOffer.get(1).isShiny),(int)(Game.WIDTH * 2.8 / 100 * Game.SCALE), Game.HEIGHT * 38 / 100 * Game.SCALE,null);
+					if(pkmOffer.get(0).nm != null) {
+						g.drawString(pkmOffer.get(0).nm, (int)(Game.WIDTH * 20 / 100 * Game.SCALE), Game.HEIGHT * 38 / 100 * Game.SCALE);
+						g.drawImage(Game.pokedex.getSprite(pkmOffer.get(0).id, "front", pkmOffer.get(0).isShiny),(int)(Game.WIDTH * 18.5 / 100 * Game.SCALE), Game.HEIGHT * 38 / 100 * Game.SCALE,null);
+						
+					}if(pkmOffer.get(1).nm != null) {
+						g.drawString(pkmOffer.get(1).nm, (int)(Game.WIDTH * 4.3 / 100 * Game.SCALE), Game.HEIGHT * 38 / 100 * Game.SCALE);
+						g.drawImage(Game.pokedex.getSprite(pkmOffer.get(1).id, "front", pkmOffer.get(1).isShiny),(int)(Game.WIDTH * 2.8 / 100 * Game.SCALE), Game.HEIGHT * 38 / 100 * Game.SCALE,null);
+						
+					}
+				}else {
+					g.drawString("SEM OFERTAS", (int)(Game.WIDTH * 12 / 100 * Game.SCALE), Game.HEIGHT * 66 / 100 * Game.SCALE);
 					
 				}
+				
 				
 				
 				

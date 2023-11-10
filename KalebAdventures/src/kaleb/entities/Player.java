@@ -69,6 +69,7 @@ public class Player extends Entity {
 		if(Game.currentLvl+1 !=  Game.lvlConfig.get(0).total) {
 			Game.currentLvl++;
 			
+			Game.tradeController.populateNpcTrade();
 			//crirar o mapa
 			Game.lvlConfig.get(0).generateLvl();
 			//criar os locais 

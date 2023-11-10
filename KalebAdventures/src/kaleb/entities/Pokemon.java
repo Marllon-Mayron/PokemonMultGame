@@ -32,6 +32,7 @@ public class Pokemon extends Entity {
 	public double atk;
 	public double spAtk;
 	public double spdInMap;
+	public double totalStates;
 	public double cooldown;
 	public double cooldownFrame;
 	public String status;
@@ -51,6 +52,9 @@ public class Pokemon extends Entity {
 	public boolean lowLife;
 	//SABER SE O POKEMON ACABOU DE SER CAPTURADO
 	public boolean catchNow;
+	//SABER RARIDADE DO POKEMON
+	public boolean isLegendary;
+	public boolean isMythical;
 	//SABER SE OS POKEMONS SÃO SELVAGEM
 	public boolean isWild;
 	//POKEMON QUE NÃO É CAPTURAVEL
@@ -138,6 +142,13 @@ public class Pokemon extends Entity {
 		this.isAngry = indomitable;
 		
 		this.id = id;
+		
+		if(Game.pokedex.getInfo(id, "legendary").equalsIgnoreCase("true")) {
+			this.isLegendary = true;
+		}else if(Game.pokedex.getInfo(id, "mythical").equalsIgnoreCase("true")) {
+			this.isMythical = true;
+		}
+		 
 		this.lvl = lvl;
 		defineEvolutionMode();
 		this.nm = Game.pokedex.getInfo(id, "name");
@@ -254,7 +265,7 @@ public class Pokemon extends Entity {
 		this.def = ((( (Double.parseDouble(stats[2])*2 + 5)+ ivs[2] + evs[2]/4) / 100) * (this.lvl+HoldItemDef));
 		this.spAtk = ((( (Double.parseDouble(stats[3])*2 + 5)+ ivs[3] + evs[3]/4) / 100) * (this.lvl+HoldItemSpAtk));
 		this.spDef = ((( (Double.parseDouble(stats[4])*2 + 5)+ ivs[4] + evs[4]/4) / 100) * (this.lvl+HoldItemSpDef));
-		this.spd = ((( (Double.parseDouble(stats[5])*2 + 5)+ ivs[5] + evs[5]/4) / 100) * (this.lvl));;
+		this.spd = ((( (Double.parseDouble(stats[5])*2 + 5)+ ivs[5] + evs[5]/4) / 100) * (this.lvl));
 		this.spdInMap = (Double.parseDouble(stats[5]) /120);
 		this.maxXp = 10 * lvl;
 		
@@ -267,6 +278,14 @@ public class Pokemon extends Entity {
 			this.spd = this.spd + this.spd*5/100;
 			this.spdInMap = this.spdInMap + this.spdInMap*2/100;
 		}
+		double baseHp, baseAtk, baseDef, baseSpd, baseSpAtk, baseSpDef;
+		baseHp = Double.parseDouble(stats[0]);
+		baseAtk = Double.parseDouble(stats[1]);
+		baseDef = Double.parseDouble(stats[2]);
+		baseSpAtk = Double.parseDouble(stats[3]);
+		baseSpDef = Double.parseDouble(stats[4]);
+		baseSpd = Double.parseDouble(stats[5]);
+		this.totalStates = baseHp + baseAtk + baseDef + baseSpAtk + baseSpDef + baseSpd;
 	}
 	public void timeItem(){
 		holdFrame++;

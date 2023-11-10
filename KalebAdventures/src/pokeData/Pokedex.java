@@ -26,6 +26,8 @@ public class Pokedex {
 	public BufferedImage[] allTypesSprites = new BufferedImage[19];
 	Long id;
 	String name;
+	Boolean is_legendary;
+	Boolean is_mythical;
 	JSONArray type;
 	JSONObject base;
 	JSONObject evs;
@@ -71,7 +73,8 @@ public class Pokedex {
 				evs = (JSONObject) pokemon.get("ev");
 				catchRate = (Long) pokemon.get("rate");
 				evolucaoJson = (JSONObject) pokemon.get("Evolucao");
-
+				is_legendary = (Boolean) pokemon.get("is_legendary");
+				is_mythical = (Boolean) pokemon.get("is_mythical");
 			}
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
@@ -126,12 +129,28 @@ public class Pokedex {
 	            evs = (JSONObject) pokemon.get("ev");
 	            catchRate = (Long) pokemon.get("rate");
 	            evolucaoJson =  (JSONObject) pokemon.get("Evolucao");
+	            is_legendary = (Boolean) pokemon.get("is_legendary");
+				is_mythical = (Boolean) pokemon.get("is_mythical");
 	            // Verifique se há informações de evolução disponíveis
 	            
 
 	            switch (info) {
 	                case "name":
 	                    returnInfo = name;
+	                    break;
+	                case "legendary":
+	                	if(is_legendary) {
+	                		returnInfo = "true";
+	                	}else {
+	                		returnInfo = "false";
+	                	} 
+	                    break;
+	                case "mythical":
+	                	if(is_mythical) {
+	                		returnInfo = "true";
+	                	}else {
+	                		returnInfo = "false";
+	                	}
 	                    break;
 	                case "type":
 	                    returnInfo = "" + type;

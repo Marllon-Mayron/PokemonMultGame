@@ -3,7 +3,9 @@
 //ADIÇÕES
 Adicionado sistema de evolução no game.
 Adicionado pedra de evolução.
+Trocas agora são balanceadas no range de 30 pontos base
 //CORREÇÃO DE BUGS
+Corrigido para aparecer o pokemon do tipo oposto no tutorial
 Corrigido erro ao shiny evoluir
 Corrigido problema com nature, agora o nature é carregado todo nivel, coisa que não estava acontecendo antes.
 ======================================================================
