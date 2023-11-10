@@ -10,9 +10,9 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import itens.Item;
 import kaleb.entities.Player;
 import kaleb.entities.Pokemon;
+import kaleb.itens.Item;
 import kaleb.main.Game;
 import kaleb.world.Camera;
 

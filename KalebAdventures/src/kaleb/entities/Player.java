@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import itens.BattleItem;
-import itens.EvolutionItem;
-import itens.Medicine;
-import itens.Pokeball;
+import kaleb.itens.BattleItem;
+import kaleb.itens.EvolutionItem;
+import kaleb.itens.Medicine;
+import kaleb.itens.Pokeball;
 import kaleb.main.Game;
 
 public class Player extends Entity {

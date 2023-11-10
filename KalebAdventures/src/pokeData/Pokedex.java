@@ -16,7 +16,6 @@ import kaleb.graphics.Spritesheet;
 public class Pokedex {
 
 	public int maxId = 151 + 1;
-	private int npcNum = 3;
 	private BufferedImage[] allSprite = new BufferedImage[maxId];
 	private BufferedImage[] allSpriteBack = new BufferedImage[maxId];
 	private BufferedImage[] allSpriteShiny = new BufferedImage[maxId];
@@ -41,13 +40,13 @@ public class Pokedex {
 		// ORGANIZAR NOME DO SPRITE
 		for (int i = 1; i < maxId; i++) {
 
-			spritesheet = new Spritesheet("/PokemonSprites/im/" + i + ".png");
+			spritesheet = new Spritesheet("/PokemonSprites/front/" + i + ".png");
 			allSprite[i] = spritesheet.getSprite(0, 0, 96, 96);
 
 			spritesheet = new Spritesheet("/PokemonSprites/back/" + i + ".png");
 			allSpriteBack[i] = spritesheet.getSprite(0, 0, 96, 96);
 
-			spritesheet = new Spritesheet("/PokemonSprites/im/" + i + "s.png");
+			spritesheet = new Spritesheet("/PokemonSprites/front/" + i + "s.png");
 			allSpriteShiny[i] = spritesheet.getSprite(0, 0, 96, 96);
 
 			spritesheet = new Spritesheet("/PokemonSprites/back/" + i + "s.png");
@@ -56,7 +55,7 @@ public class Pokedex {
 		}
 	}
 	public void populateDex() {
-		String arquivoJson = "/pokemon_data.json";
+		String arquivoJson = "/json/pokemon_data.json";
 		JSONParser parser = new JSONParser();
 		try (InputStream inputStream = getClass().getResourceAsStream(arquivoJson); InputStreamReader reader = new InputStreamReader(inputStream)) {
 			// Parse o arquivo JSON

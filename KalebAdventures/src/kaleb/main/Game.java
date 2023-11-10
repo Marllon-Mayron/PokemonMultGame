@@ -19,10 +19,10 @@ import java.util.TimerTask;
 
 import javax.swing.JFrame;
 
-import itens.BattleItem;
-import itens.ItemController;
-import itens.Medicine;
-import itens.Pokeball;
+import kaleb.controller.EventController;
+import kaleb.controller.ItemController;
+import kaleb.controller.StoreController;
+import kaleb.controller.TradeController;
 
 //Importa��o dos Packages
 
@@ -33,15 +33,15 @@ import kaleb.entities.Pokemon;
 import kaleb.entities.SlotPc;
 import kaleb.graphics.Spritesheet;
 import kaleb.graphics.UI;
+import kaleb.itens.BattleItem;
+import kaleb.itens.Medicine;
+import kaleb.itens.Pokeball;
 import kaleb.world.Camera;
-import kaleb.world.EventController;
 import kaleb.world.LevelsConfigs;
 import kaleb.world.PokeGenerator;
 import pokeData.Pc;
 import pokeData.Pokedex;
 import pokeData.Slot;
-import pokeData.StoreController;
-import pokeData.TradeController;
 
 public class Game extends Canvas implements Runnable, KeyListener,MouseListener,MouseMotionListener {
 

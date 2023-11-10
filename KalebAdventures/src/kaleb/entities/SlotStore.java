@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import itens.Item;
+import kaleb.itens.Item;
 import kaleb.main.Game;
 
 public class SlotStore extends Entity{

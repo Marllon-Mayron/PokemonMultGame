@@ -494,7 +494,6 @@ public class Pokemon extends Entity {
 		}
 	}
 	public void evolue() {
-		System.out.println("posso evoluir");
 		String[] allMembers = Game.pokedex.getInfo(id, "members").split(",");
 		int myOrderNum = 0;
 		int idEvolue = 0;
