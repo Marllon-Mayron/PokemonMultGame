@@ -190,9 +190,6 @@ public class UI {
 					
 				}
 				
-				
-				
-				
 				g.drawRect((int)(Game.WIDTH * 37.3 / 100 * Game.SCALE), Game.HEIGHT * 40 / 100 * Game.SCALE, (Game.WIDTH * 10 / 100) * Game.SCALE, 70);
 				g.drawRect((int)(Game.WIDTH * 53 / 100 * Game.SCALE), Game.HEIGHT * 40 / 100 * Game.SCALE, (Game.WIDTH * 10 / 100) * Game.SCALE, 70);
 				g.drawRect((int)(Game.WIDTH * 42.5 / 100 * Game.SCALE), Game.HEIGHT * 62 / 100 * Game.SCALE, (Game.WIDTH * 15 / 100) * Game.SCALE, 30);
@@ -200,10 +197,6 @@ public class UI {
 				g.drawRect((int)(Game.WIDTH * 70.3 / 100 * Game.SCALE), Game.HEIGHT * 40 / 100 * Game.SCALE, (Game.WIDTH * 10 / 100) * Game.SCALE, 70);
 				g.drawRect((int)(Game.WIDTH * 86 / 100 * Game.SCALE), Game.HEIGHT * 40 / 100 * Game.SCALE, (Game.WIDTH * 10 / 100) * Game.SCALE, 70);
 				g.drawRect((int)(Game.WIDTH * 75.5 / 100 * Game.SCALE), Game.HEIGHT * 62 / 100 * Game.SCALE, (Game.WIDTH * 15 / 100) * Game.SCALE, 30);
-				
-				
-				
-				
 				
 			}
 			

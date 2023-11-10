@@ -42,7 +42,6 @@ public class TradeController {
 				}
 			}
 			while(true) {
-				
 				if(tradeOption == 1) {
 					Pokemon p = Game.pokeList.get(Game.random.nextInt(Game.pokeList.size()));
 					requested = new Pokemon(0, 0, 5, 5, null, false, p.id , 5, false);
@@ -54,10 +53,8 @@ public class TradeController {
 					if(!(requested.isLegendary || requested.isMythical)) {
 						break;
 					}
-				}	
-				
+				}					
 			}
-
 			if(offered.totalStates >= requested.totalStates - 30 && offered.totalStates <= requested.totalStates + 30) {
 				break;
 			}
