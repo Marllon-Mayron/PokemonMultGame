@@ -25,28 +25,34 @@ public class Pokemon extends Entity {
 	public int[] evs = new int[6];
 	public String[] stats = new String[6];
 
-	//STATES BASE
+	//STATES BASE==============================
 	public double spd;
 	public double def;
 	public double spDef;
 	public double atk;
 	public double spAtk;
+	//=========================================
+	//VELOCIDADE DO POKEMON NO MAPA
 	public double spdInMap;
+	//SOMA DE TODOS OS STATES, USADO PARA BALANCEAR NO TRADE
 	public double totalStates;
 	public double cooldown;
 	public double cooldownFrame;
 	public String status;
+	
+	//SISTEMA DE EVOLUCAO========================
 	public int minLevelToEvolue;
 	public int minHappinessToEvolue;
 	public boolean evolueHappness;
 	public boolean evoluelearnMove;
 	public String moveToEvolue;
 	public String itemToEvolue;
+	public String triggerEvolution;
+	//==========================================
 	public String nature;
 	public int natureId;
 
 	public int lvl;
-	public String triggerEvolution;
 	public String userMessage = "";
 	
 	public boolean lowLife;

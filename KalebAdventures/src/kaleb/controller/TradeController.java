@@ -25,16 +25,17 @@ public class TradeController {
 			slotList.add(st);
 		}
 	}
-	public void populateNpcTrade() {
-		
+	//CRIAR A TRADE DE NPC
+	public void populateNpcTrade() {		
 		Game.ui.pkmOffer.clear();
 		int tradeOption = 0;
 		//0 = pokemon aleatorio, 1 - pokemon da minha lista, 2 - pokemons que ja passaram no mapa.
 		if(Game.random.nextInt(100)+1 < 101) {
 			tradeOption = 1;
 		}
-		
+		//LOOP PARA TRADE NÃO ENVOLVER LENDARIOS/MITICOS, E ENCONTRAR TROCAS JUSTAS
 		while(true) {
+			
 			while(true) {
 				offered = new Pokemon(0, 0, 5, 5, null, false, Game.random.nextInt(Game.pokedex.maxId-1)+1, 5, false);
 				if(!(offered.isLegendary || offered.isMythical)) {
@@ -80,14 +81,17 @@ public class TradeController {
 			}
 		}
 	}
+	//METODO CHAMADO QUANDO APERTAR O BTN TROCA
 	public void tradeAccept(Pokemon pkm) {
 		for(int i = 0; i < Game.pokeList.size(); i++) {
 			if(pkm.equals(Game.pokeList.get(i))) {
 				for(int j = 0; j < 6; j++) {
 					if(Game.slotList.get(j).pokemon.equals(pkm)) {
 						offered.lvl = pkm.lvl; 
-						offered.statsCalculator();
+						offered.evs = pkm.evs;
 						offered.currentHp = offered.maxHp;
+						
+						offered.statsCalculator();
 						offered.updateLife();
 						offered.updateXp();
 						

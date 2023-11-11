@@ -1,4 +1,4 @@
-package pokeData;
+package kaleb.controller;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -8,8 +8,8 @@ import kaleb.entities.SlotPc;
 import kaleb.entities.SlotStore;
 import kaleb.main.Game;
 
-public class Pc extends Entity{
-	public Pc(int x, int y, int width, int height, BufferedImage sprite) {
+public class PcController extends Entity{
+	public PcController(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
 		// TODO Auto-generated constructor stub
 		

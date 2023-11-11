@@ -21,6 +21,7 @@ import javax.swing.JFrame;
 
 import kaleb.controller.EventController;
 import kaleb.controller.ItemController;
+import kaleb.controller.PcController;
 import kaleb.controller.StoreController;
 import kaleb.controller.TradeController;
 
@@ -39,7 +40,6 @@ import kaleb.itens.Pokeball;
 import kaleb.world.Camera;
 import kaleb.world.LevelsConfigs;
 import kaleb.world.PokeGenerator;
-import pokeData.Pc;
 import pokeData.Pokedex;
 import pokeData.Slot;
 
@@ -73,7 +73,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 	public static int FPS = 0;
 	public static int gameState = 0;
 	public static int tutorialSteps = 0;
-	public static Pc pc;
+	public static PcController pc;
 	public static StoreController storeController = new StoreController();
 	public static ItemController itemController = new ItemController();
 	public static EventController eventController = new EventController();
@@ -142,7 +142,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 		}
 		
 		entities.add(player);
-		pc = new Pc(0,0,0,0,null);
+		pc = new PcController(0,0,0,0,null);
 		// Para que os eventos de teclado funcionem
 		addKeyListener(this);
 		addMouseMotionListener(this);

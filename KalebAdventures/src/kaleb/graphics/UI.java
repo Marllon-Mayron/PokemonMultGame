@@ -115,6 +115,7 @@ public class UI {
 				
 				
 			}
+			drawItemSlot(g);
 		}
 		
 		if (Game.gameState == 2) {
@@ -204,7 +205,7 @@ public class UI {
 		}
 		
 		
-		drawItemSlot(g);
+		
 		g.drawString("WAVE: " + (Game.lvlConfig.get(Game.currentLvl).nGen* Game.lvlConfig.get(Game.currentLvl).pokeGenNum[Game.currentLvl] - Game.lvlConfig.get(Game.currentLvl).totalDefeat) + " / "+ Game.lvlConfig.get(Game.currentLvl).nGen* Game.lvlConfig.get(Game.currentLvl).pokeGenNum[Game.currentLvl],(int) (Game.WIDTH * 2.5 / 100) * Game.SCALE, (int) (Game.HEIGHT * 89 / 100) * Game.SCALE);
 
 	}
