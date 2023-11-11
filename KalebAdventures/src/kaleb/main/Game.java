@@ -788,6 +788,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 		}
 	}
 	private void deletePokemon() {
+		if(pokeList.size() != 1) {
 		if ((player.x >= WIDTH * 91 / 100 && player.x <= WIDTH * 91 / 100 + 13) && (player.y >= HEIGHT * 65 / 100 && player.y <= HEIGHT * 65 / 100 + 12)) {
 			for (int i = 0; i < pokeList.size(); i++) {
 				if (pokeList.get(i).equals(ui.pokemonPcDetails)) {
@@ -813,6 +814,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 			}
 
 			ui.pokemonPcDetails = null;
+	}
 	}
 	}
 	private void pcPageNavegation() {
