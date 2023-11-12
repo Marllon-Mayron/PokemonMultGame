@@ -117,7 +117,7 @@ public class TradeController {
 		}
 	}
 	public void render(Graphics g) {
-		if(sameOfferList.size() > 0 && Game.gameState == 2 && Game.ui.pcView == 2) {
+		if(sameOfferList.size() > 0 && Game.gameState.equalsIgnoreCase("user_view") && Game.ui.pcView.equalsIgnoreCase("trade")) {
 			for(int i = 0; i < 6; i++) {
 				if(sameOfferList.size() > i) {
 					for(int j = 0; j < Game.pokeList.size(); j++) {

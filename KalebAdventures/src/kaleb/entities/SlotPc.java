@@ -22,7 +22,7 @@ public class SlotPc extends Entity{
 		this.background = Game.ui.ballIcon;      
 	}
 	public void tick() {
-		if(Game.gameState == 2 && Game.ui.pcView == 0) {
+		if(Game.gameState.equalsIgnoreCase("user_view") && Game.ui.pcView.equalsIgnoreCase("pc")) {
 			for(int i = 0; i < Game.slotList.size(); i++) {
 				if(Game.slotList.get(i).pokemon != null && Game.slotList.get(i).pokemon.equals(pokemon)) {
 					slotPrincipal = true;
@@ -40,7 +40,7 @@ public class SlotPc extends Entity{
 	
 	
 	public void renderStr(Graphics g) {
-		if(Game.gameState == 2 && Game.ui.pcView == 0) {
+		if(Game.gameState.equalsIgnoreCase("user_view") && Game.ui.pcView.equalsIgnoreCase("pc")) {
 			if(slotPrincipal) {
 				g.setColor(Color.darkGray);
 				g.fillRect((int)this.x, (int)this.y,(Game.WIDTH*10/100)*Game.SCALE, 70);				

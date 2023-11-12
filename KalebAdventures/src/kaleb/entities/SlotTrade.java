@@ -28,7 +28,7 @@ public class SlotTrade extends Entity{
 	
 	
 	public void renderStr(Graphics g) {
-		if(Game.gameState == 2 && Game.ui.pcView == 2) {
+		if(Game.gameState.equalsIgnoreCase("user_view") && Game.ui.pcView.equalsIgnoreCase("trade")) {
 			if(selected) {
 				g.setColor(Color.green);
 			}else {

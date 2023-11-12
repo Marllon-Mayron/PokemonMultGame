@@ -30,7 +30,7 @@ public class UI {
 	
 	public List<Pokemon> pkmOffer = new ArrayList<Pokemon>();
 	public Item itemDetails;
-	public int pcView;
+	public String pcView = "pc";
 	public int nDice = 2;
 	public int nColumn;
 	public int nRow;
@@ -69,7 +69,7 @@ public class UI {
 		g.setColor(Color.gray);
 
 		tutorialRender(g);
-		if(pcView != 2) {
+		if(!pcView.equalsIgnoreCase("trade")) {
 			if (Game.configs.activeHud == true) {
 				for (int i = 0; i < 6; i++) {
 					if (Game.slotList.get(i).getSlotStatus().equalsIgnoreCase("free")) {
@@ -118,7 +118,7 @@ public class UI {
 			drawItemSlot(g);
 		}
 		
-		if (Game.gameState == 2) {
+		if (Game.gameState.equalsIgnoreCase("user_view")) {
 			g.setColor(Color.red);
 			//g.fillRect(Game.WIDTH * 25 / 100 * Game.SCALE, Game.HEIGHT * 2 / 100 * Game.SCALE,Game.WIDTH * 10 / 100 * Game.SCALE, Game.HEIGHT * 8 / 100 * Game.SCALE);
 			//g.fillRect(Game.WIDTH * 45 / 100 * Game.SCALE, Game.HEIGHT * 2 / 100 * Game.SCALE,Game.WIDTH * 10 / 100 * Game.SCALE, Game.HEIGHT * 8 / 100 * Game.SCALE);
@@ -134,7 +134,7 @@ public class UI {
 			g.drawString("TRADE",(int)( Game.WIDTH * 68 / 100 * Game.SCALE), Game.HEIGHT * 7 / 100 * Game.SCALE);
 			
 			
-			if(pcView == 0) {
+			if(pcView.equalsIgnoreCase("pc")) {
 				g.setColor(Color.gray);
 				g.fillRect(Game.WIDTH * 2 / 100 * Game.SCALE, Game.HEIGHT * 20 / 100 * Game.SCALE, (int) (Game.WIDTH * 71 / 100 * Game.SCALE), Game.HEIGHT * 54 / 100 * Game.SCALE);
 				g.fillRect(Game.WIDTH * 75 / 100 * Game.SCALE, Game.HEIGHT * 20 / 100 * Game.SCALE,(int) (Game.WIDTH * 22.5 / 100 * Game.SCALE), Game.HEIGHT * 54 / 100 * Game.SCALE);
@@ -144,7 +144,7 @@ public class UI {
 				if (this.pokemonPcDetails != null) {
 					drawSpriteDetails(g);
 				}
-			}else if(pcView == 1){
+			}else if(pcView.equalsIgnoreCase("store")){
 				g.setColor(Color.gray);
 				g.fillRect(Game.WIDTH * 25 / 100 * Game.SCALE, Game.HEIGHT * 20 / 100 * Game.SCALE, (int) (Game.WIDTH * 50 / 100 * Game.SCALE), Game.HEIGHT * 54 / 100 * Game.SCALE);
 				
@@ -160,7 +160,7 @@ public class UI {
 				
 				
 				
-			}else if(pcView == 2){
+			}else if(pcView.equalsIgnoreCase("trade")){
 				g.setColor(Color.gray);
 				
 					

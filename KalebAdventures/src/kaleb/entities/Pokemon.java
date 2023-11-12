@@ -557,7 +557,7 @@ public class Pokemon extends Entity {
 		Game.pokeList.add(this);
 	}
 	public void tick() {	
-		if(isHoldding && Game.gameState == 1) {
+		if(isHoldding && Game.gameState.equalsIgnoreCase("catch")) {
 			timeItem();
 		}
 		cooldownTick();
@@ -920,7 +920,7 @@ public class Pokemon extends Entity {
 		 
 	}
 	//GRAFICOS===========================================
-	private void loadSprite() {
+	public void loadSprite() {
 		
 		//ORGANIZAR NOME DO SPRITE
 		String tempUrl ="";

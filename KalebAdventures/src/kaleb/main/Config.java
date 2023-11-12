@@ -12,7 +12,7 @@ public class Config {
 	public boolean debugMode = false;
 	public boolean showCorrectRoutes = debugMode;
 	//QUANTOS SEGUNDOS NA LOJA/PC
-	public double state2Time = 15;
+	public double state2Time = 1000;
 	
 	public void userPerformance() {
 		int media = 0;

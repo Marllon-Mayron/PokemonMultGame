@@ -45,8 +45,8 @@ public class Player extends Entity {
 		}if(Game.ui.nRow == 2) {
 			listSize = battleItemList.size();
 		}
-		if (Game.waveList.size() == 0 && Game.generateList.size() == 0 && Game.gameState == 1) {
-			Game.gameState = 2;
+		if (Game.waveList.size() == 0 && Game.generateList.size() == 0 && Game.gameState.equalsIgnoreCase("catch")) {
+			Game.gameState = "user_view";
 			
 			Game.tradeController.populateNpcTrade();
 			

@@ -21,7 +21,7 @@ public class SlotStore extends Entity{
 		
 	}
 	public void tick() {
-		if(Game.gameState == 2 && Game.ui.pcView == 1) {
+		if(Game.gameState.equalsIgnoreCase("user_view") && Game.ui.pcView.equalsIgnoreCase("store")) {
 			if(Entity.isColidding2(Game.player, this)) {
 				selected = true;
 			}else {
@@ -33,7 +33,7 @@ public class SlotStore extends Entity{
 	
 	
 	public void renderStr(Graphics g) {
-		if(Game.gameState == 2 && Game.ui.pcView == 1) {
+		if(Game.gameState.equalsIgnoreCase("user_view") && Game.ui.pcView.equalsIgnoreCase("store")) {
 			if(selected) {
 				g.setColor(Color.green);
 			}else {

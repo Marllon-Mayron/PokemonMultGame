@@ -71,7 +71,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 	public static Random random;
 	public static Config configs = new Config();
 	public static int FPS = 0;
-	public static int gameState = 0;
+	public static String gameState = "tutorial";
 	public static int tutorialSteps = 0;
 	public static PcController pc;
 	public static StoreController storeController = new StoreController();
@@ -92,8 +92,8 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
             	}           	
             	if(wait >= 2) {
             		player.nextGameLevel();
-            		gameState = 1;
-            		ui.pcView = 0;
+            		gameState = "catch";
+            		ui.pcView = "pc";
             		wait = 0;
                	 	timer.cancel();
             	}
@@ -332,7 +332,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			if(gameState == 1) {
+			if(gameState.equalsIgnoreCase("catch")) {
 				putSlotItem();
 			}
 			
@@ -340,7 +340,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 				tutorialSteps++;					
 			}else if(tutorialSteps == 1) {
 				int i = 0;
-				while(i < 1) {
+				while(i < 2) {
 					Pokemon inicial;
 					inicial = new Pokemon(0, 0, 5, 5, null, false, ui.startSelect, 5, false);
 					inicial.inMap = false;
@@ -359,7 +359,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 				lvlConfig.get(currentLvl).routePokemonBossList[0][0] = inicialOposto+"-200";
 				lvlConfig.get(currentLvl).generateLocale();
 				lvlConfig.get(currentLvl).generateLvl();
-				gameState = 1;
+				gameState = "catch";
 				Pokeball pokeball = new Pokeball(0, null, null, 0, null, 8);
 				Pokeball greatball = new Pokeball(1, null, null, 0, null, 2);
 				Medicine potion = new Medicine(0, null, null, 0, null, 2);
@@ -425,7 +425,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 		player.draged = true;
 		//ATUALIZAR POSIÇÃO
 		updatePositions(e);
-		if(Game.gameState == 1) {
+		if(Game.gameState.equalsIgnoreCase("catch")) {
 			//ARRASTAR DO TIME PRINCIPAL PRO MAPA
 			draggingForMap();
 			//ARRASTAR DO SLOT DE ITEM
@@ -476,25 +476,10 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if(gameState == 2 ) {
-			if(player.x >= Game.WIDTH * 25 / 100 && player.x <= WIDTH * Game.WIDTH * 25 / 100 + Game.WIDTH * 10 / 100) {
-				if(player.y >= HEIGHT * 2 / 100 && player.y <= HEIGHT * 2 / 100 + HEIGHT * 8 / 100) {
-					ui.pcView = 0;
-				}
-			}
-			if(player.x >= WIDTH * 45 / 100 && player.x <= WIDTH * 45 / 100 + Game.WIDTH * 10 / 100) {
-				if(player.y >= HEIGHT * 2 / 100 && player.y <= HEIGHT * 2 / 100 + HEIGHT * 8 / 100) {
-					ui.pcView = 1;
-					storeController.generateItem();
-				}
-			}
-			if(player.x >= WIDTH * 65 / 100 && player.x <= WIDTH * 65 / 100 + Game.WIDTH * 10 / 100) {
-				if(player.y >= HEIGHT * 2 / 100 && player.y <= HEIGHT * 2 / 100 + HEIGHT * 8 / 100) {
-					ui.pcView = 2;
-					storeController.generateItem();
-				}
-			}
-			if(ui.pcView == 0) {
+		if(gameState.equalsIgnoreCase("user_view")) {
+			bntsClicks();
+			
+			if(ui.pcView.equalsIgnoreCase("pc")) {
 				//REMOVER OS POKEMONS DO TIME PRINCIPAL
 				mainTimeRemove();
 			}else {
@@ -508,6 +493,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 		
 	}
 
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -520,23 +506,19 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 		// TODO Auto-generated method stub
 		player.draged = false;
 		
-		if(Game.gameState == 0) {
-			for(int i = 0; i < 6; i++) {
-				if(slotList.get(i).pokemon == null && player.pokemonDragged != null) {
-					if((player.x >= (WIDTH * 14 / 100) + (WIDTH * ((i) * 10) / 100)+ (i + 1) * (WIDTH * 2 / 100) && player.x <= (WIDTH * 14 / 100)+ (WIDTH * ((i) * 10) / 100)+ (i + 1) * (WIDTH * 2 / 100) + (WIDTH * 10 / 100))&&(player.y >= ((HEIGHT * 81 / 100)) + 2 && player.y <= ((HEIGHT * 81 / 100)) + 72)){					
-						slotList.get(i).pokemon = player.pokemonDragged;
-					}
-				}
-			}
-		}else if(Game.gameState == 1) {
+		if(Game.gameState.equalsIgnoreCase("tutorial")) {
+			
+		}else if(Game.gameState.equalsIgnoreCase("catch")) {
 			//SOLTAR POKEMON DO SLOT PARA O MAP
 			putInMap();
 			//ARASTAR POKEMONS QUE JA ESTÃO NO MAPA
 			draggedInMap();	
 			//VERIFICAÇÕES ENVOLVENDO POKEMONS
 			mouseReleaseInPokemon();
-		}else if(Game.gameState == 2) {
-			if(ui.pcView == 0) {
+			//SETAS DE ITENS
+			slotItemNavegation();
+		}else if(Game.gameState.equalsIgnoreCase("user_view")) {
+			if(ui.pcView.equalsIgnoreCase("pc")) {
 				//ESCOLHER POKEMON DO PC
 				pcSlotClick();
 				//DELETAR POKEMON
@@ -545,7 +527,9 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 				pcPageNavegation();
 				//SETAS DE ITENS
 				slotItemNavegation();
-			}else if(ui.pcView == 1) {
+				//TIRAR POKEMON DO PC E COLOCAR NO TIME PRINCIPAL
+				mainTimeChange();
+			}else if(ui.pcView.equalsIgnoreCase("store")) {
 				//BTN COMPRAR
 				btnBuy();
 				//ESCOLHER ITEM NA LOJA
@@ -554,7 +538,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 				diceStore();
 				//SETAS DE ITENS
 				slotItemNavegation();
-			}else if(ui.pcView == 2) {
+			}else if(ui.pcView.equalsIgnoreCase("trade")) {
 				if(tradeController.offertOn){
 					//VISUALIZA OPÇÕES POSSIVEIS PARA AS TROCAS
 					viewTradeOptions();
@@ -579,6 +563,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 
 
 
+	
 	private void choiceTrade() {
 		if(tradeController.slotList.size() > 0) {
 			for(int i = 0; i < tradeController.slotList.size(); i++) {
@@ -764,6 +749,35 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 		}
 	}
 	//METODOS DE MOUSE RELEASE
+	private void bntsClicks() {
+		if(player.x >= Game.WIDTH * 25 / 100 && player.x <= WIDTH * Game.WIDTH * 25 / 100 + Game.WIDTH * 10 / 100) {
+			if(player.y >= HEIGHT * 2 / 100 && player.y <= HEIGHT * 2 / 100 + HEIGHT * 8 / 100) {
+				ui.pcView = "pc";
+			}
+		}
+		if(player.x >= WIDTH * 45 / 100 && player.x <= WIDTH * 45 / 100 + Game.WIDTH * 10 / 100) {
+			if(player.y >= HEIGHT * 2 / 100 && player.y <= HEIGHT * 2 / 100 + HEIGHT * 8 / 100) {
+				ui.pcView = "store";
+				storeController.generateItem();
+			}
+		}
+		if(player.x >= WIDTH * 65 / 100 && player.x <= WIDTH * 65 / 100 + Game.WIDTH * 10 / 100) {
+			if(player.y >= HEIGHT * 2 / 100 && player.y <= HEIGHT * 2 / 100 + HEIGHT * 8 / 100) {
+				ui.pcView = "trade";
+				storeController.generateItem();
+			}
+		}
+		
+	}
+	private void mainTimeChange() {
+		for(int i = 0; i < 6; i++) {
+			if(slotList.get(i).pokemon == null && player.pokemonDragged != null) {
+				if((player.x >= (WIDTH * 14 / 100) + (WIDTH * ((i) * 10) / 100)+ (i + 1) * (WIDTH * 2 / 100) && player.x <= (WIDTH * 14 / 100)+ (WIDTH * ((i) * 10) / 100)+ (i + 1) * (WIDTH * 2 / 100) + (WIDTH * 10 / 100))&&(player.y >= ((HEIGHT * 81 / 100)) + 2 && player.y <= ((HEIGHT * 81 / 100)) + 72)){					
+					slotList.get(i).pokemon = player.pokemonDragged;
+				}
+			}
+		}
+	}
 	private void btnBuy() {
 		if(player.x >= (int)(Game.WIDTH * 82.5 / 100) && player.x <= (int)(Game.WIDTH * 82.5 / 100) + 23) {
 			if(player.y >= Game.HEIGHT * 59 / 100 && player.y <= Game.HEIGHT * 59 / 100 + 7) {
@@ -775,7 +789,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 		}
 	}
 	private void diceStore() {
-		if(ui.pcView == 1) {
+		if(ui.pcView.equalsIgnoreCase("store")) {
 			if(player.x >= (Game.WIDTH * 50 / 100) - 5 && player.x <= (Game.WIDTH * 50 / 100) - 5 + 10) {
 				if(player.y >= (Game.HEIGHT * 64) / 100 && player.y <= (Game.HEIGHT * 64) + 30) {
 					if(ui.nDice > 0) {
@@ -1074,7 +1088,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 	private void pcSlotClick() {
 		for(int i = 0; i < slotPcList.size(); i++) {
 			if(Entity.isColidding2(player, slotPcList.get(i))) {
-				ui.pokemonPcDetails =  slotPcList.get(i).pokemon;
+				ui.pokemonPcDetails = slotPcList.get(i).pokemon;
 			}
 		}
 	}

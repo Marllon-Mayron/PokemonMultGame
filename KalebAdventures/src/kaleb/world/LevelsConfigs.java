@@ -215,7 +215,7 @@ public class LevelsConfigs {
 		}		
 	}
 	public void render(Graphics g) {
-		if(Game.gameState == 1) {
+		if(Game.gameState.equalsIgnoreCase("catch")) {
 			g.drawImage(mapSprite[Game.currentLvl], 0 - Camera.x ,0 - Camera.y, null);
 			
 		}
@@ -237,7 +237,7 @@ public class LevelsConfigs {
 		
 	}
 	public void render2(Graphics g) {
-		if(Game.gameState == 1) {
+		if(Game.gameState.equalsIgnoreCase("catch")) {
 			g.drawImage(mapSprite2[Game.currentLvl], 0 - Camera.x ,0 - Camera.y, null);
 			
 		}
