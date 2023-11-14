@@ -44,7 +44,9 @@ public class TradeController {
 			}
 			while(true) {
 				if(tradeOption == 1) {
-					Pokemon p = Game.pokeList.get(Game.random.nextInt(Game.pokeList.size()));
+					int n = Game.random.nextInt(Game.pokeList.size());
+					Pokemon p = Game.pokeList.get(n);
+					System.out.println(Game.pokeList.size());
 					requested = new Pokemon(0, 0, 5, 5, null, false, p.id , 5, false);
 					if(!(requested.isLegendary || requested.isMythical)) {
 						break;
@@ -77,7 +79,6 @@ public class TradeController {
 					}
 				}
 				sameOfferList.add(Game.pokeList.get(i));
-				;
 			}
 		}
 	}

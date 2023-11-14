@@ -127,11 +127,13 @@ public class UI {
 			g.drawImage(btn, (int)(Game.WIDTH * 24.5 / 100 * Game.SCALE), Game.HEIGHT * 1 / 100 * Game.SCALE ,null);
 			g.drawImage(btn, (int)(Game.WIDTH * 44.5 / 100 * Game.SCALE), Game.HEIGHT * 1 / 100 * Game.SCALE,null);
 			g.drawImage(btn, (int)(Game.WIDTH * 64.5 / 100 * Game.SCALE), Game.HEIGHT * 1 / 100 * Game.SCALE,null);
+			g.fillRect((int)(Game.WIDTH * 88 / 100 * Game.SCALE), Game.HEIGHT * 2 / 100 * Game.SCALE, 75, 38);
 			
 			g.setColor(Color.black);
 			g.drawString("PC", (int)(Game.WIDTH * 29 / 100 * Game.SCALE), Game.HEIGHT * 7 / 100 * Game.SCALE);
 			g.drawString("LOJA",(int)( Game.WIDTH * 48 / 100 * Game.SCALE), Game.HEIGHT * 7 / 100 * Game.SCALE);
 			g.drawString("TRADE",(int)( Game.WIDTH * 68 / 100 * Game.SCALE), Game.HEIGHT * 7 / 100 * Game.SCALE);
+			g.drawString("SKIP",(int)( Game.WIDTH * 92 / 100 * Game.SCALE), Game.HEIGHT * 7 / 100 * Game.SCALE);
 			
 			
 			if(pcView.equalsIgnoreCase("pc")) {

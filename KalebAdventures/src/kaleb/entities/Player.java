@@ -15,7 +15,7 @@ import kaleb.itens.Pokeball;
 import kaleb.main.Game;
 
 public class Player extends Entity {
-	public int money = 0;
+	public int money = 500;
 	public int score = 0;
 	public int totalCaptured;
 	public int currentPokeball;
@@ -56,9 +56,7 @@ public class Player extends Entity {
 			removeLocales();
 			//DEVOLVER 10% DA VIDA DOS POKEMONS DERROTADOS
 			restorePokemons();
-			//INICIAR CONTAGEM REGRESSIVA DA LOJA
-			Game.timer = new Timer();
-			Game.timer();
+
 		}
 		
 	}
