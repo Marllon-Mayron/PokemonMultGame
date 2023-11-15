@@ -47,7 +47,7 @@ public class Player extends Entity {
 		}
 		if (Game.waveList.size() == 0 && Game.generateList.size() == 0 && Game.gameState.equalsIgnoreCase("catch")) {
 			Game.gameState = "user_view";
-			
+			Game.ui.pcView = "pc";
 			Game.tradeController.populateNpcTrade();
 			
 			//RETIRAR POKEMON DO MAPA

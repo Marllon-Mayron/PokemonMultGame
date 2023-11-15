@@ -28,9 +28,10 @@ public class UI {
 	public BufferedImage[] starters = new BufferedImage[3];
 	public Pokemon pokemonPcDetails;
 	
+	public boolean defineHoster = false;
 	public List<Pokemon> pkmOffer = new ArrayList<Pokemon>();
 	public Item itemDetails;
-	public String pcView = "pc";
+	public String pcView = "";
 	public int nDice = 2;
 	public int nColumn;
 	public int nRow;
@@ -66,54 +67,44 @@ public class UI {
 		g2d.setStroke(new BasicStroke(3));
 		Font fonte = new Font("Arial", Font.BOLD, 12); // Fonte Arial, negrito, tamanho 24
 		g.setFont(fonte);
-		g.setColor(Color.gray);
+		if(Game.gameState.equalsIgnoreCase("menu_multiplayer")) {
+			g.setColor(Color.white);
+			g.drawRect((int)(Game.WIDTH * 42 / 100 * Game.SCALE),  Game.HEIGHT * 10 / 100 * Game.SCALE, Game.WIDTH * 16 / 100 * Game.SCALE, Game.HEIGHT * 10 / 100 * Game.SCALE);
+			g.drawString("HOSPEDAR",(int)(Game.WIDTH * 45 / 100 * Game.SCALE),(int)(Game.HEIGHT * 16.5 / 100 * Game.SCALE));
+			g.drawString(Game.multiConf.name,(int)(Game.WIDTH * 45 / 100 * Game.SCALE),(int)(Game.HEIGHT * 6.5 / 100 * Game.SCALE));
+			g.drawRect((int)(Game.WIDTH * 42 / 100 * Game.SCALE),  Game.HEIGHT * 80 / 100 * Game.SCALE, Game.WIDTH * 16 / 100 * Game.SCALE, Game.HEIGHT * 10 / 100 * Game.SCALE);
+			g.drawString("VOLTAR",(int)(Game.WIDTH * 46.5 / 100 * Game.SCALE),(int)(Game.HEIGHT * 86.5 / 100 * Game.SCALE));
+			
+			if(defineHoster) {
+				g.drawRect((int)(Game.WIDTH * 42 / 100 * Game.SCALE),  Game.HEIGHT * 45 / 100 * Game.SCALE, Game.WIDTH * 16 / 100 * Game.SCALE, Game.HEIGHT * 10 / 100 * Game.SCALE);			
+				g.drawString(Game.multiConf.ip,(int)(Game.WIDTH * 44.2 / 100 * Game.SCALE),(int)(Game.HEIGHT * 49.5 / 100 * Game.SCALE));
+				g.drawString("PLAY",(int)(Game.WIDTH * 48 / 100 * Game.SCALE),(int)(Game.HEIGHT * 52.5 / 100 * Game.SCALE));
+				g.drawString("N-JOGADORES: "+Game.multiConf.numJogadores,(int)(Game.WIDTH * 2 / 100 * Game.SCALE),(int)(Game.HEIGHT * 4 / 100 * Game.SCALE));
+				
+			}else {
+				g.drawRect((int)(Game.WIDTH * 42 / 100 * Game.SCALE),  Game.HEIGHT * 45 / 100 * Game.SCALE, Game.WIDTH * 16 / 100 * Game.SCALE, Game.HEIGHT * 10 / 100 * Game.SCALE);			
+				g.drawString("ENTRAR",(int)(Game.WIDTH * 47 / 100 * Game.SCALE),(int)(Game.HEIGHT * 52.5 / 100 * Game.SCALE));
+				
+			}
+		}else if(Game.gameState.equalsIgnoreCase("menu")) {
+			g.setColor(Color.white);
+			g.drawRect((int)(Game.WIDTH * 30 / 100 * Game.SCALE),  Game.HEIGHT * 30 / 100 * Game.SCALE, Game.WIDTH * 40 / 100 * Game.SCALE, Game.HEIGHT * 15 / 100 * Game.SCALE);
+			g.drawRect((int)(Game.WIDTH * 30 / 100 * Game.SCALE),  Game.HEIGHT * 55 / 100 * Game.SCALE, Game.WIDTH * 40 / 100 * Game.SCALE, Game.HEIGHT * 15 / 100 * Game.SCALE);
+			g.drawRect((int)(Game.WIDTH * 42 / 100 * Game.SCALE),  Game.HEIGHT * 80 / 100 * Game.SCALE, Game.WIDTH * 16 / 100 * Game.SCALE, Game.HEIGHT * 10 / 100 * Game.SCALE);
+			g.drawString("Alpha 0.1", Game.WIDTH * 3 / 100 * Game.SCALE, Game.HEIGHT * 96 / 100 * Game.SCALE);
+			g.drawString("SINGLEPLAYER",(int)(Game.WIDTH * 44.2 / 100 * Game.SCALE),(int)(Game.HEIGHT * 38.5 / 100 * Game.SCALE));
+			g.drawString("MULTIPLAYER",(int)(Game.WIDTH * 44 / 100 * Game.SCALE),(int)(Game.HEIGHT * 63.5 / 100 * Game.SCALE));
+			g.drawString("OPTIONS",(int)(Game.WIDTH * 46.2 / 100 * Game.SCALE),(int)(Game.HEIGHT * 86.5 / 100 * Game.SCALE));
+			
+		}else if(Game.gameState.equalsIgnoreCase("tutorial")) {
+			tutorialRender(g);
+		}
 
-		tutorialRender(g);
-		if(!pcView.equalsIgnoreCase("trade")) {
+		
+		
+		if(Game.gameState.equalsIgnoreCase("catch") || pcView.equalsIgnoreCase("pc")) {
 			if (Game.configs.activeHud == true) {
-				for (int i = 0; i < 6; i++) {
-					if (Game.slotList.get(i).getSlotStatus().equalsIgnoreCase("free")) {
-						g.setColor(Color.gray);
-					} else if (Game.slotList.get(i).getSlotStatus().equalsIgnoreCase("inMap")) {
-						g.setColor(Color.blue);
-					} else if (Game.slotList.get(i).getSlotStatus().equalsIgnoreCase("defeat")){
-						g.setColor(Color.red);
-					}
-
-					g.fillRect((Game.WIDTH * 14 / 100) * Game.SCALE + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 81 / 100) * Game.SCALE) + 2, (Game.WIDTH * 10 / 100) * Game.SCALE, 70);
-					g.setColor(Color.black);
-
-					if (Game.slotList.get(i).isSelected) {
-						g.setColor(Color.green);
-					}
-					g.drawRect((Game.WIDTH * 14 / 100) * Game.SCALE + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 81 / 100) * Game.SCALE) + 2, (Game.WIDTH * 10 / 100) * Game.SCALE, 70);
-					g.drawImage(ballIcon,(Game.WIDTH * 14 / 100) * Game.SCALE + 4 + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 82 / 100) * Game.SCALE), null);
-
-					if (Game.slotList.get(i).getPokemon() != null) {
-						g.setColor(Color.BLACK);
-						g.drawString(Game.pokedex.getInfo((Game.slotList.get(i).getPokemon().id), "name"),(Game.WIDTH * 14 / 100) * Game.SCALE + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 99 / 100) * Game.SCALE) + 2);
-						g.drawImage(null,(Game.WIDTH * 14 / 100) * Game.SCALE + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 99 / 100) * Game.SCALE) + 2, null);
-
-						g.drawString("Lvl: " + Game.slotList.get(i).getPokemon().lvl,(Game.WIDTH * 14 / 100) * Game.SCALE + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 80 / 100) * Game.SCALE) + 2);
-						g.drawImage(Game.pokedex.getSprite(Game.slotList.get(i).getPokemon().id, "Front",Game.slotList.get(i).getPokemon().isShiny),(Game.WIDTH * 14 / 100) * Game.SCALE - 10 + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 81 / 100) * Game.SCALE) - 8, null);
-						g.drawImage(Game.pokedex.allTypesSprites[Game.slotList.get(i).getPokemon().myTypesNum[0]],(Game.WIDTH * 20 / 100) * Game.SCALE - 10 + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 79 / 100) * Game.SCALE) - 10, null);
-						g.drawImage(Game.pokedex.allTypesSprites[Game.slotList.get(i).getPokemon().myTypesNum[1]],(Game.WIDTH * 23 / 100) * Game.SCALE - 10 + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 79 / 100) * Game.SCALE) - 10, null);
-
-					}
-
-				}
-				
-				g.setColor(Color.gray);
-				g.fillRect((Game.WIDTH * 87 / 100) * Game.SCALE, (Game.HEIGHT * 83 / 100) * Game.SCALE,(Game.WIDTH * 10 / 100) * Game.SCALE, (Game.WIDTH * 8 / 100) * Game.SCALE);
-				g.fillRect((int) ((Game.WIDTH * 0.8 / 100) * Game.SCALE), (Game.HEIGHT * 2 / 100) * Game.SCALE,(Game.WIDTH * 10 / 100) * Game.SCALE,(int) (Game.WIDTH * 5.5 / 100) * Game.SCALE);
-				g.fillRect((int) (Game.WIDTH * 2 / 100) * Game.SCALE, (int) (Game.HEIGHT * 85 / 100) * Game.SCALE, 86, 30);
-
-				g.setColor(Color.BLACK);
-				g.drawString("SCORE: " + Game.player.score, (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 7 / 100) * Game.SCALE);
-				g.drawString("FPS: " + Game.FPS, (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 9.5 / 100) * Game.SCALE);
-				g.drawString("MONEY: " + Game.player.money, (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 4.5 / 100) * Game.SCALE);
-				
-				
+				viewHud(g);
 			}
 			drawItemSlot(g);
 		}
@@ -205,11 +196,53 @@ public class UI {
 			
 
 		}
+	}
+
+	private void viewHud(Graphics g) {
+		for (int i = 0; i < 6; i++) {
+			if (Game.slotList.get(i).getSlotStatus().equalsIgnoreCase("free")) {
+				g.setColor(Color.gray);
+			} else if (Game.slotList.get(i).getSlotStatus().equalsIgnoreCase("inMap")) {
+				g.setColor(Color.blue);
+			} else if (Game.slotList.get(i).getSlotStatus().equalsIgnoreCase("defeat")){
+				g.setColor(Color.red);
+			}
+
+			g.fillRect((Game.WIDTH * 14 / 100) * Game.SCALE + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 81 / 100) * Game.SCALE) + 2, (Game.WIDTH * 10 / 100) * Game.SCALE, 70);
+			g.setColor(Color.black);
+
+			if (Game.slotList.get(i).isSelected) {
+				g.setColor(Color.green);
+			}
+			g.drawRect((Game.WIDTH * 14 / 100) * Game.SCALE + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 81 / 100) * Game.SCALE) + 2, (Game.WIDTH * 10 / 100) * Game.SCALE, 70);
+			g.drawImage(ballIcon,(Game.WIDTH * 14 / 100) * Game.SCALE + 4 + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 82 / 100) * Game.SCALE), null);
+
+			if (Game.slotList.get(i).getPokemon() != null) {
+				g.setColor(Color.BLACK);
+				g.drawString(Game.pokedex.getInfo((Game.slotList.get(i).getPokemon().id), "name"),(Game.WIDTH * 14 / 100) * Game.SCALE + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 99 / 100) * Game.SCALE) + 2);
+				g.drawImage(null,(Game.WIDTH * 14 / 100) * Game.SCALE + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 99 / 100) * Game.SCALE) + 2, null);
+
+				g.drawString("Lvl: " + Game.slotList.get(i).getPokemon().lvl,(Game.WIDTH * 14 / 100) * Game.SCALE + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 80 / 100) * Game.SCALE) + 2);
+				g.drawImage(Game.pokedex.getSprite(Game.slotList.get(i).getPokemon().id, "Front",Game.slotList.get(i).getPokemon().isShiny),(Game.WIDTH * 14 / 100) * Game.SCALE - 10 + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 81 / 100) * Game.SCALE) - 8, null);
+				g.drawImage(Game.pokedex.allTypesSprites[Game.slotList.get(i).getPokemon().myTypesNum[0]],(Game.WIDTH * 20 / 100) * Game.SCALE - 10 + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 79 / 100) * Game.SCALE) - 10, null);
+				g.drawImage(Game.pokedex.allTypesSprites[Game.slotList.get(i).getPokemon().myTypesNum[1]],(Game.WIDTH * 23 / 100) * Game.SCALE - 10 + (Game.WIDTH * ((i) * 10) / 100) * Game.SCALE+ (i + 1) * (Game.WIDTH * 2 / 100) * Game.SCALE,((Game.HEIGHT * 79 / 100) * Game.SCALE) - 10, null);
+
+			}
+
+		}
 		
-		
-		
+		g.setColor(Color.gray);
+		g.fillRect((Game.WIDTH * 87 / 100) * Game.SCALE, (Game.HEIGHT * 83 / 100) * Game.SCALE,(Game.WIDTH * 10 / 100) * Game.SCALE, (Game.WIDTH * 8 / 100) * Game.SCALE);
+		g.fillRect((int) ((Game.WIDTH * 0.8 / 100) * Game.SCALE), (Game.HEIGHT * 2 / 100) * Game.SCALE,(Game.WIDTH * 10 / 100) * Game.SCALE,(int) (Game.WIDTH * 5.5 / 100) * Game.SCALE);
+		g.fillRect((int) (Game.WIDTH * 2 / 100) * Game.SCALE, (int) (Game.HEIGHT * 85 / 100) * Game.SCALE, 86, 30);
+
+		g.setColor(Color.BLACK);
+		g.drawString("SCORE: " + Game.player.score, (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 7 / 100) * Game.SCALE);
+		g.drawString("FPS: " + Game.FPS, (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 9.5 / 100) * Game.SCALE);
+		g.drawString("MONEY: " + Game.player.money, (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 4.5 / 100) * Game.SCALE);
 		g.drawString("WAVE: " + (Game.lvlConfig.get(Game.currentLvl).nGen* Game.lvlConfig.get(Game.currentLvl).pokeGenNum[Game.currentLvl] - Game.lvlConfig.get(Game.currentLvl).totalDefeat) + " / "+ Game.lvlConfig.get(Game.currentLvl).nGen* Game.lvlConfig.get(Game.currentLvl).pokeGenNum[Game.currentLvl],(int) (Game.WIDTH * 2.5 / 100) * Game.SCALE, (int) (Game.HEIGHT * 89 / 100) * Game.SCALE);
 
+		
 	}
 
 	private void drawItemSlot(Graphics g) {
@@ -268,6 +301,7 @@ public class UI {
 	}
 
 	private void tutorialRender(Graphics g){
+		g.setColor(Color.gray);
 		if (Game.tutorialSteps == 0) {
 			g.fillRect((Game.WIDTH * Game.SCALE) / 2 - (Game.WIDTH * 50 / 100 * Game.SCALE) / 2,(Game.HEIGHT * Game.SCALE) / 2 - (Game.HEIGHT * 50 / 100 * Game.SCALE) / 2,(Game.WIDTH * 50 / 100 * Game.SCALE), (Game.HEIGHT * 50 / 100 * Game.SCALE));
 			g.setColor(Color.black);

@@ -11,13 +11,15 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import kaleb.controller.EventController;
 import kaleb.controller.ItemController;
@@ -71,14 +73,15 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 	public static Random random;
 	public static Config configs = new Config();
 	public static int FPS = 0;
-	public static String gameState = "tutorial";
+	public static String gameState = "menu";
 	public static int tutorialSteps = 0;
+	public static String gameMode = "";
 	public static PcController pc;
 	public static StoreController storeController = new StoreController();
 	public static ItemController itemController = new ItemController();
 	public static EventController eventController = new EventController();
 	public static TradeController tradeController = new TradeController();
-	
+	public static MultplayerConfigs multiConf;
 	// Construtor
 	public Game() {
 		random = new Random();
@@ -483,8 +486,14 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		player.draged = false;
-		
-		if(Game.gameState.equalsIgnoreCase("tutorial")) {
+		if(Game.gameState.equalsIgnoreCase("menu")) {
+			btnSingleplayer();	
+			btnMultiplayer();	
+		}else if(Game.gameState.equalsIgnoreCase("menu_multiplayer")) {
+			btnVoltarMenu();
+			btnHost();
+			btnLogar();
+		}else if(Game.gameState.equalsIgnoreCase("tutorial")) {
 			
 		}else if(Game.gameState.equalsIgnoreCase("catch")) {
 			//SOLTAR POKEMON DO SLOT PARA O MAP
@@ -538,6 +547,72 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 		player.sprite = null;
 		player.spriteDesc = ""; 
 		player.pokemonDragged = null;
+	}
+
+	private void btnSingleplayer() {
+		if(player.x > Game.WIDTH * 30 / 100 && player.x < Game.WIDTH * 30 / 100 + Game.WIDTH * 40 / 100) {
+			if(player.y > Game.HEIGHT * 30 / 100 && player.y < Game.HEIGHT * 30 / 100 + Game.HEIGHT * 15 / 100) {
+				gameMode = "single";
+				gameState = "tutorial";
+			}
+		}
+	}
+	private void btnMultiplayer() {
+	    if (player.x > Game.WIDTH * 30 / 100 && player.x < Game.WIDTH * 30 / 100 + Game.WIDTH * 40 / 100) {
+	        if (player.y > Game.HEIGHT * 55 / 100 && player.y < Game.HEIGHT * 55 / 100 + Game.HEIGHT * 15 / 100) {
+	           multiConf = new MultplayerConfigs();
+	        	while(multiConf.name.equals("")) {
+	        	   JTextField playerNameField = new JTextField();
+		            Object[] message = {"Digite seu nome:", playerNameField};
+		            int option = JOptionPane.showOptionDialog(null, message, "Nome do Jogador", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+
+		            if (option == JOptionPane.OK_OPTION) {
+		                
+		            	multiConf.name = playerNameField.getText();
+		            }
+	           }
+	          
+	        	gameState = "menu_multiplayer";
+               gameMode = "multi";
+	            
+	        }
+	    }
+	}
+	private void btnVoltarMenu() {
+		 if (player.x > Game.WIDTH * 30 / 100 && player.x < Game.WIDTH * 30 / 100 + Game.WIDTH * 40 / 100) {
+		    if (player.y > Game.HEIGHT * 80 / 100 && player.y < Game.HEIGHT * 80 / 100 + Game.HEIGHT * 15 / 100) {
+		        gameMode = "";
+		       	gameState = "menu";
+		       	multiConf.name = "";
+		    }
+		 }
+	}
+	private void btnHost() {
+		 if (player.x > Game.WIDTH * 30 / 100 && player.x < Game.WIDTH * 30 / 100 + Game.WIDTH * 40 / 100) {
+		        if (player.y > Game.HEIGHT * 10 / 100 && player.y < Game.HEIGHT * 10 / 100 + Game.HEIGHT * 15 / 100) {
+		        	 try {
+		                 InetAddress localHost = InetAddress.getLocalHost();
+		                 multiConf.ip = localHost.getHostAddress();
+		                 ui.defineHoster = true;
+		                 multiConf.numJogadores++;
+		             } catch (UnknownHostException e) {
+		                 e.printStackTrace();
+		             }
+		        }
+		 }
+	}
+	private void btnLogar() {
+		 if (player.x > Game.WIDTH * 30 / 100 && player.x < Game.WIDTH * 30 / 100 + Game.WIDTH * 40 / 100) {
+			 if (player.y > Game.HEIGHT * 45 / 100 && player.y < Game.HEIGHT * 45 / 100 + Game.HEIGHT * 15 / 100) {
+				 JTextField ipField = new JTextField();
+				 Object[] message = {"Digite IP:", ipField};
+		         int option = JOptionPane.showOptionDialog(null, message, "IP DO SERVIDOR", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+
+		         if (option == JOptionPane.OK_OPTION) {          
+		            multiConf.ipLogar = ipField.getText();
+		         }      	
+		     }
+		 }
 	}
 
 	@Override
