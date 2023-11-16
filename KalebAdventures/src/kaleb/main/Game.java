@@ -44,6 +44,9 @@ import kaleb.world.LevelsConfigs;
 import kaleb.world.PokeGenerator;
 import pokeData.Pokedex;
 import pokeData.Slot;
+import server.Conection;
+import server.MultplayerConfigs;
+import server.Server;
 
 public class Game extends Canvas implements Runnable, KeyListener,MouseListener,MouseMotionListener {
 
@@ -595,6 +598,9 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 		                 multiConf.ip = localHost.getHostAddress();
 		                 ui.defineHoster = true;
 		                 multiConf.numJogadores++;
+		                 
+		                 Server.startServer();
+		                 Conection conect = new Conection();
 		             } catch (UnknownHostException e) {
 		                 e.printStackTrace();
 		             }
@@ -610,7 +616,8 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 
 		         if (option == JOptionPane.OK_OPTION) {          
 		            multiConf.ipLogar = ipField.getText();
-		         }      	
+		         }
+		         Conection conect = new Conection();
 		     }
 		 }
 	}

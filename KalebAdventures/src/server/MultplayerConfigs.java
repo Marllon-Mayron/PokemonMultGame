@@ -1,4 +1,4 @@
-package kaleb.main;
+package server;
 
 public class MultplayerConfigs {
 	
