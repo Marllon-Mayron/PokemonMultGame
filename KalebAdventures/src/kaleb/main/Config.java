@@ -9,7 +9,7 @@ public class Config {
 	public boolean activeHud = true;
 	public boolean activeDesc;
 	public boolean activeRange;
-	public boolean debugMode = true;
+	public boolean debugMode = false;
 	public boolean showCorrectRoutes = debugMode;
 	//QUANTOS SEGUNDOS NA LOJA/PC
 	public double state2Time = 15;

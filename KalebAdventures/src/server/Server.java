@@ -43,7 +43,7 @@ public class Server extends Thread {
                         // Cria uma nova thread para tratar essa conexão
                         Thread t = new Server(conexao);
                         t.start();
-                       
+             
                     } catch (IOException e) {
                         System.out.println("IOException: " + e);
                     }
@@ -63,21 +63,12 @@ public class Server extends Thread {
 			BufferedReader entrada = new BufferedReader(new InputStreamReader(conexao.getInputStream()));
 			PrintStream saida = new PrintStream(conexao.getOutputStream());
 
-			meuNome = entrada.readLine();
-			
-			if (meuNome == null) {return;}
 			clientes.add(saida);
 			
-			String linha = entrada.readLine();
-			
-			while (linha != null && !(linha.trim().equals(""))) {
-				sendToAll(saida, " disse: ", linha);
-				linha = entrada.readLine();
+			if(totalJogadores == 2) {
+				sendAll("começar");
 			}
-
-			sendToAll(saida, " saiu ", "do chat!");
-			clientes.remove(saida);
-			conexao.close();
+			
 		}
 		catch (IOException e) {
 			System.out.println("IOException: " + e);
@@ -92,11 +83,11 @@ public class Server extends Thread {
 			}
 		}
 	}
-	public void sendAll(PrintStream saida, String acao, String linha) throws IOException {
+	public void sendAll(String linha) throws IOException {
 		Enumeration e = clientes.elements();
 		while (e.hasMoreElements()) {
 			PrintStream chat = (PrintStream) e.nextElement();
-			chat.println(meuNome + acao + linha);
+			chat.println(linha);
 			
 		}
 	}

@@ -101,7 +101,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 		waveList = new ArrayList<Pokemon>();
 		generateList = new ArrayList<PokeGenerator>();
 		// LEVELS CONFIGS =============================================
-		LevelsConfigs lvl0 = new LevelsConfigs(0, 1, 0.1, 5, 5);
+		LevelsConfigs lvl0 = new LevelsConfigs(0, 1, 0.1, 4, 4);
 		LevelsConfigs lvl1 = new LevelsConfigs(1, 12, 2.5, 3, 5);
 		LevelsConfigs lvl2 = new LevelsConfigs(2, 21, 3.5, 5, 8);
 		LevelsConfigs lvl3 = new LevelsConfigs(3, 25, 3.5, 8, 12);
@@ -597,8 +597,6 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 		                 InetAddress localHost = InetAddress.getLocalHost();
 		                 multiConf.ip = localHost.getHostAddress();
 		                 ui.defineHoster = true;
-		                 multiConf.numJogadores++;
-		                 
 		                 Server.startServer();
 		                 Conection conect = new Conection(multiConf.ip);
 		             } catch (UnknownHostException e) {

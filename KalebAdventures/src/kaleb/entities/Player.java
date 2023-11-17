@@ -46,17 +46,19 @@ public class Player extends Entity {
 			listSize = battleItemList.size();
 		}
 		if (Game.waveList.size() == 0 && Game.generateList.size() == 0 && Game.gameState.equalsIgnoreCase("catch")) {
-			Game.gameState = "user_view";
-			Game.ui.pcView = "pc";
-			Game.tradeController.populateNpcTrade();
-			
-			//RETIRAR POKEMON DO MAPA
-			removePokemons();
-			//REMOVER TODOS OS LOCALES DO MAPA 
-			removeLocales();
-			//DEVOLVER 10% DA VIDA DOS POKEMONS DERROTADOS
-			restorePokemons();
-
+			if(Game.gameMode.equalsIgnoreCase("single")) {
+				Game.gameState = "user_view";
+				Game.ui.pcView = "pc";
+				Game.tradeController.populateNpcTrade();
+				//RETIRAR POKEMON DO MAPA
+				removePokemons();
+				//REMOVER TODOS OS LOCALES DO MAPA 
+				removeLocales();
+				//DEVOLVER 10% DA VIDA DOS POKEMONS DERROTADOS
+				restorePokemons();
+			}else {
+				
+			}
 		}
 		
 	}

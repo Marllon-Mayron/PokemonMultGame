@@ -15,6 +15,7 @@ import kaleb.entities.Pokemon;
 import kaleb.itens.Item;
 import kaleb.main.Game;
 import kaleb.world.Camera;
+import server.Server;
 
 public class UI {
 
@@ -74,12 +75,14 @@ public class UI {
 			g.drawString(Game.multiConf.name,(int)(Game.WIDTH * 45 / 100 * Game.SCALE),(int)(Game.HEIGHT * 6.5 / 100 * Game.SCALE));
 			g.drawRect((int)(Game.WIDTH * 42 / 100 * Game.SCALE),  Game.HEIGHT * 80 / 100 * Game.SCALE, Game.WIDTH * 16 / 100 * Game.SCALE, Game.HEIGHT * 10 / 100 * Game.SCALE);
 			g.drawString("VOLTAR",(int)(Game.WIDTH * 46.5 / 100 * Game.SCALE),(int)(Game.HEIGHT * 86.5 / 100 * Game.SCALE));
+			if(Server.totalJogadores > 0) {
+				g.drawString("N-JOGADORES: "+Server.totalJogadores,(int)(Game.WIDTH * 2 / 100 * Game.SCALE),(int)(Game.HEIGHT * 4 / 100 * Game.SCALE));	
+			}
 			
 			if(defineHoster) {
 				g.drawRect((int)(Game.WIDTH * 42 / 100 * Game.SCALE),  Game.HEIGHT * 45 / 100 * Game.SCALE, Game.WIDTH * 16 / 100 * Game.SCALE, Game.HEIGHT * 10 / 100 * Game.SCALE);			
 				g.drawString(Game.multiConf.ip,(int)(Game.WIDTH * 44.2 / 100 * Game.SCALE),(int)(Game.HEIGHT * 49.5 / 100 * Game.SCALE));
 				g.drawString("PLAY",(int)(Game.WIDTH * 48 / 100 * Game.SCALE),(int)(Game.HEIGHT * 52.5 / 100 * Game.SCALE));
-				g.drawString("N-JOGADORES: "+Game.multiConf.numJogadores,(int)(Game.WIDTH * 2 / 100 * Game.SCALE),(int)(Game.HEIGHT * 4 / 100 * Game.SCALE));
 				
 			}else {
 				g.drawRect((int)(Game.WIDTH * 42 / 100 * Game.SCALE),  Game.HEIGHT * 45 / 100 * Game.SCALE, Game.WIDTH * 16 / 100 * Game.SCALE, Game.HEIGHT * 10 / 100 * Game.SCALE);			
