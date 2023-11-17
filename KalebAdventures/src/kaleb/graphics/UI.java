@@ -102,10 +102,16 @@ public class UI {
 
 		
 		
-		if(Game.gameState.equalsIgnoreCase("catch") || pcView.equalsIgnoreCase("pc")) {
+		if(Game.gameState.equalsIgnoreCase("catch") || (pcView.equalsIgnoreCase("pc") || pcView.equalsIgnoreCase("store"))) {
 			if (Game.configs.activeHud == true) {
 				viewHud(g);
 			}
+			g.setColor(Color.gray);
+			g.fillRect((int) ((Game.WIDTH * 0.8 / 100) * Game.SCALE), (Game.HEIGHT * 2 / 100) * Game.SCALE,(Game.WIDTH * 10 / 100) * Game.SCALE,(int) (Game.WIDTH * 5.5 / 100) * Game.SCALE);
+			g.setColor(Color.BLACK);
+			g.drawString("SCORE: " + Game.player.score, (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 7 / 100) * Game.SCALE);
+			g.drawString("FPS: " + Game.FPS, (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 9.5 / 100) * Game.SCALE);
+			g.drawString("MONEY: " + Game.player.money, (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 4.5 / 100) * Game.SCALE);
 			drawItemSlot(g);
 		}
 		
@@ -233,16 +239,10 @@ public class UI {
 		
 		g.setColor(Color.gray);
 		g.fillRect((Game.WIDTH * 87 / 100) * Game.SCALE, (Game.HEIGHT * 83 / 100) * Game.SCALE,(Game.WIDTH * 10 / 100) * Game.SCALE, (Game.WIDTH * 8 / 100) * Game.SCALE);
-		g.fillRect((int) ((Game.WIDTH * 0.8 / 100) * Game.SCALE), (Game.HEIGHT * 2 / 100) * Game.SCALE,(Game.WIDTH * 10 / 100) * Game.SCALE,(int) (Game.WIDTH * 5.5 / 100) * Game.SCALE);
 		g.fillRect((int) (Game.WIDTH * 2 / 100) * Game.SCALE, (int) (Game.HEIGHT * 85 / 100) * Game.SCALE, 86, 30);
 
 		g.setColor(Color.BLACK);
-		g.drawString("SCORE: " + Game.player.score, (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 7 / 100) * Game.SCALE);
-		g.drawString("FPS: " + Game.FPS, (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 9.5 / 100) * Game.SCALE);
-		g.drawString("MONEY: " + Game.player.money, (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 4.5 / 100) * Game.SCALE);
 		g.drawString("WAVE: " + (Game.lvlConfig.get(Game.currentLvl).nGen* Game.lvlConfig.get(Game.currentLvl).pokeGenNum[Game.currentLvl] - Game.lvlConfig.get(Game.currentLvl).totalDefeat) + " / "+ Game.lvlConfig.get(Game.currentLvl).nGen* Game.lvlConfig.get(Game.currentLvl).pokeGenNum[Game.currentLvl],(int) (Game.WIDTH * 2.5 / 100) * Game.SCALE, (int) (Game.HEIGHT * 89 / 100) * Game.SCALE);
-
-		
 	}
 
 	private void drawItemSlot(Graphics g) {

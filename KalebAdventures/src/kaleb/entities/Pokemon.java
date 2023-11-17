@@ -496,25 +496,41 @@ public class Pokemon extends Entity {
 			}
 					
 		}else if(triggerEvolution.equalsIgnoreCase("use-item")) {
-			itemToEvolue = Game.pokedex.getInfo(this.id, "item_name");
+			if(this.id == 133) {
+				itemToEvolue = Game.pokedex.getInfo(this.id, "stone");
+			}else {
+				itemToEvolue = Game.pokedex.getInfo(this.id, "item_name");
+			}
+			
 		}
 	}
 	public void evolue() {
 		String[] allMembers = Game.pokedex.getInfo(id, "members").split(",");
 		int myOrderNum = 0;
 		int idEvolue = 0;
-		for(int i = 0; i < allMembers.length; i++) {
-			if(this.nm.equalsIgnoreCase(allMembers[i])) {
-				myOrderNum = i;
-				break;
+		if(this.id != 133) {
+			for(int i = 0; i < allMembers.length; i++) {
+				if(this.nm.equalsIgnoreCase(allMembers[i])) {
+					myOrderNum = i;
+					break;
+				}
+			}
+			for(int j = 0; j < Game.pokedex.maxId-1; j++) {
+				if(allMembers[myOrderNum+1].equalsIgnoreCase(Game.pokedex.getInfo(j, "name"))) {
+					idEvolue = j;
+					break;
+				}
+			}
+		}else {
+			if(Player.evolueItemList.get(Game.ui.nColumn).name.equalsIgnoreCase("water-stone")) {
+				idEvolue = 134;
+			}else if(Player.evolueItemList.get(Game.ui.nColumn).name.equalsIgnoreCase("thunder-stone")) {
+				idEvolue = 135;
+			}else if(Player.evolueItemList.get(Game.ui.nColumn).name.equalsIgnoreCase("fire-stone")) {
+				idEvolue = 136;
 			}
 		}
-		for(int j = 0; j < Game.pokedex.maxId-1; j++) {
-			if(allMembers[myOrderNum+1].equalsIgnoreCase(Game.pokedex.getInfo(j, "name"))) {
-				idEvolue = j;
-				break;
-			}
-		}
+		
 		
 		this.id = idEvolue;
 		this.nm = Game.pokedex.getInfo(this.id, "name");

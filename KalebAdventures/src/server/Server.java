@@ -43,6 +43,7 @@ public class Server extends Thread {
                         // Cria uma nova thread para tratar essa conexão
                         Thread t = new Server(conexao);
                         t.start();
+                       
                     } catch (IOException e) {
                         System.out.println("IOException: " + e);
                     }
@@ -70,10 +71,7 @@ public class Server extends Thread {
 			String linha = entrada.readLine();
 			
 			while (linha != null && !(linha.trim().equals(""))) {
-//				reenvia a linha para todos os clientes conectados
 				sendToAll(saida, " disse: ", linha);
-
-//				espera por uma nova linha.
 				linha = entrada.readLine();
 			}
 
@@ -82,19 +80,24 @@ public class Server extends Thread {
 			conexao.close();
 		}
 		catch (IOException e) {
-//			Caso ocorra alguma excess�o de E/S, mostre qual foi.
 			System.out.println("IOException: " + e);
 		}
 	}
-//	enviar uma mensagem para todos, menos para o pr�prio
-	public void sendToAll(PrintStream saida, String acao,
-			String linha) throws IOException {
+	public void sendToAll(PrintStream saida, String acao, String linha) throws IOException {
 		Enumeration e = clientes.elements();
 		while (e.hasMoreElements()) {
-//			obt�m o fluxo de sa�da de um dos clientes
 			PrintStream chat = (PrintStream) e.nextElement();
-//			envia para todos, menos para o pr�prio usu�rio
-			if (chat != saida) {chat.println(meuNome + acao + linha);}
+			if (chat != saida) {
+				chat.println(meuNome + acao + linha);
+			}
+		}
+	}
+	public void sendAll(PrintStream saida, String acao, String linha) throws IOException {
+		Enumeration e = clientes.elements();
+		while (e.hasMoreElements()) {
+			PrintStream chat = (PrintStream) e.nextElement();
+			chat.println(meuNome + acao + linha);
+			
 		}
 	}
 }

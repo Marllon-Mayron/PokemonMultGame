@@ -15,7 +15,7 @@ import kaleb.itens.Pokeball;
 import kaleb.main.Game;
 
 public class Player extends Entity {
-	public int money = 500;
+	public int money = 50;
 	public int score = 0;
 	public int totalCaptured;
 	public int currentPokeball;

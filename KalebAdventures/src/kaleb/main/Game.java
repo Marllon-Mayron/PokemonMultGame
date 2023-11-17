@@ -839,33 +839,35 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 	}
 	private void deletePokemon() {
 		if(pokeList.size() != 1) {
-		if ((player.x >= WIDTH * 91 / 100 && player.x <= WIDTH * 91 / 100 + 13) && (player.y >= HEIGHT * 65 / 100 && player.y <= HEIGHT * 65 / 100 + 12)) {
-			for (int i = 0; i < pokeList.size(); i++) {
-				if (pokeList.get(i).equals(ui.pokemonPcDetails)) {
-					pokeList.remove(i);
+			if ((player.x >= WIDTH * 91 / 100 && player.x <= WIDTH * 91 / 100 + 13) && (player.y >= HEIGHT * 65 / 100 && player.y <= HEIGHT * 65 / 100 + 12)) {
+				for (int i = 0; i < pokeList.size(); i++) {
+					if (pokeList.get(i).equals(ui.pokemonPcDetails)) {
+						pokeList.remove(i);
+					}
 				}
-			}
-			for (int i = 0; i < entities.size(); i++) {
-				if (entities.get(i).equals(ui.pokemonPcDetails)) {
-					entities.remove(i);
+				for (int i = 0; i < entities.size(); i++) {
+					if (entities.get(i).equals(ui.pokemonPcDetails)) {
+						entities.remove(i);
+					}
 				}
-			}
-			for (int i = 0; i < slotList.size(); i++) {
-				if (slotList.get(i).pokemon != null && slotList.get(i).pokemon.equals(ui.pokemonPcDetails)) {
-					slotList.get(i).pokemon = null;
-					slotList.get(i).slotStatus = "free";
+				for (int i = 0; i < slotList.size(); i++) {
+					if (slotList.get(i).pokemon != null && slotList.get(i).pokemon.equals(ui.pokemonPcDetails)) {
+						slotList.get(i).pokemon = null;
+						slotList.get(i).slotStatus = "free";
+					}
 				}
-			}
-			for (int i = 0; i <slotPcList.size(); i++) {
-				if (slotPcList.get(i).pokemon != null && slotPcList.get(i).pokemon.equals(ui.pokemonPcDetails)) {
-					slotPcList.get(i).pokemon = null;
-					slotPcList.get(i).slotPrincipal = false;
+				for (int i = 0; i <slotPcList.size(); i++) {
+					if (slotPcList.get(i).pokemon != null && slotPcList.get(i).pokemon.equals(ui.pokemonPcDetails)) {
+						slotPcList.get(i).pokemon = null;
+						slotPcList.get(i).slotPrincipal = false;
+					}
 				}
-			}
 
-			ui.pokemonPcDetails = null;
-	}
-	}
+				ui.pokemonPcDetails = null;
+				
+				updatePcList();
+			}
+		}
 	}
 	private void pcPageNavegation() {
 		if((player.x >= WIDTH * 2/100 && player.x < WIDTH * 2/100 + 20) && (player.y >= HEIGHT* 14/100 && player.y < HEIGHT* 14/100 + 26)) {
@@ -1189,10 +1191,16 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 				Pokemon p = (Pokemon) Game.entities.get(i);
 				if(Entity.isColiddingPokeball(player, p)) {
 					if(!p.isWild) {
-						if(p.itemToEvolue.equalsIgnoreCase(Player.evolueItemList.get(ui.nColumn).name)) {
+						if(p.id == 133) {
 							Player.evolueItemList.get(ui.nColumn).current --;
 							p.evolue();
+						}else {
+							if(p.itemToEvolue.equalsIgnoreCase(Player.evolueItemList.get(ui.nColumn).name)) {
+								Player.evolueItemList.get(ui.nColumn).current --;
+								p.evolue();
+							}
 						}
+						
 					}
 				}
 			}
@@ -1301,5 +1309,20 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 			}
 		}
 	}
-	
+	//N/A
+	private void updatePcList() {
+		slotPcList.clear();
+		for(int i2 = 0; i2 < 3; i2++) {
+			for(int i3 = 0; i3 < 6; i3++) {
+				SlotPc sp = new SlotPc((Game.WIDTH*6/100 * Game.SCALE )/2 + i3*(Game.WIDTH*12/100)*Game.SCALE,(Game.HEIGHT*44/100 * Game.SCALE)/2 + i2 * (Game.HEIGHT*18/100)*Game.SCALE, (Game.WIDTH*10/100)*Game.SCALE,70, null, null);				
+				Game.slotPcList.add(sp);
+			}
+		}
+		for(int i = 0; i < 18; i++) {
+			Game.slotPcList.get(i).pokemon = pokeList.get(i+(18*(ui.pcPage-1)));
+			if(i+1 >= pokeList.size()) {
+				break;
+			}
+		}
+	}
 }
