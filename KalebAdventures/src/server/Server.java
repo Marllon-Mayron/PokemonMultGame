@@ -16,7 +16,7 @@ public class Server extends Thread {
     private static Vector clientes;
     private Socket conexao;
     private String meuNome;
-
+    public static int totalJogadores = 0;
     public Server(Socket s) {
         conexao = s;
     }
@@ -38,6 +38,7 @@ public class Server extends Thread {
                     try {
                         Socket conexao = serverSocket.accept();
                         System.out.println("Jogador entrou na sala!");
+                        totalJogadores++;
 
                         // Cria uma nova thread para tratar essa conexão
                         Thread t = new Server(conexao);
@@ -55,17 +56,45 @@ public class Server extends Thread {
         }
     }
 
-    // Execução da thread
     public void run() {
-        try {
-            BufferedReader entrada = new BufferedReader(new InputStreamReader(conexao.getInputStream()));
-            PrintStream saida = new PrintStream(conexao.getOutputStream());
+		try {
 
-            meuNome = entrada.readLine();
+			BufferedReader entrada = new BufferedReader(new InputStreamReader(conexao.getInputStream()));
+			PrintStream saida = new PrintStream(conexao.getOutputStream());
 
-            conexao.close();
-        } catch (IOException e) {
-            System.out.println("IOException: " + e);
-        }
-    }
+			meuNome = entrada.readLine();
+			
+			if (meuNome == null) {return;}
+			clientes.add(saida);
+			
+			String linha = entrada.readLine();
+			
+			while (linha != null && !(linha.trim().equals(""))) {
+//				reenvia a linha para todos os clientes conectados
+				sendToAll(saida, " disse: ", linha);
+
+//				espera por uma nova linha.
+				linha = entrada.readLine();
+			}
+
+			sendToAll(saida, " saiu ", "do chat!");
+			clientes.remove(saida);
+			conexao.close();
+		}
+		catch (IOException e) {
+//			Caso ocorra alguma excess�o de E/S, mostre qual foi.
+			System.out.println("IOException: " + e);
+		}
+	}
+//	enviar uma mensagem para todos, menos para o pr�prio
+	public void sendToAll(PrintStream saida, String acao,
+			String linha) throws IOException {
+		Enumeration e = clientes.elements();
+		while (e.hasMoreElements()) {
+//			obt�m o fluxo de sa�da de um dos clientes
+			PrintStream chat = (PrintStream) e.nextElement();
+//			envia para todos, menos para o pr�prio usu�rio
+			if (chat != saida) {chat.println(meuNome + acao + linha);}
+		}
+	}
 }

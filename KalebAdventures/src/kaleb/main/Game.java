@@ -600,7 +600,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 		                 multiConf.numJogadores++;
 		                 
 		                 Server.startServer();
-		                 Conection conect = new Conection();
+		                 Conection conect = new Conection(multiConf.ip);
 		             } catch (UnknownHostException e) {
 		                 e.printStackTrace();
 		             }
@@ -617,7 +617,16 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 		         if (option == JOptionPane.OK_OPTION) {          
 		            multiConf.ipLogar = ipField.getText();
 		         }
-		         Conection conect = new Conection();
+		         InetAddress localHost;
+				try {
+					localHost = InetAddress.getLocalHost();
+					multiConf.ip = localHost.getHostAddress();
+			        Conection conect = new Conection(multiConf.ip);
+				} catch (UnknownHostException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+                
 		     }
 		 }
 	}
