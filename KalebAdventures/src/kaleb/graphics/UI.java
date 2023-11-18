@@ -76,7 +76,7 @@ public class UI {
 			g.drawRect((int)(Game.WIDTH * 42 / 100 * Game.SCALE),  Game.HEIGHT * 80 / 100 * Game.SCALE, Game.WIDTH * 16 / 100 * Game.SCALE, Game.HEIGHT * 10 / 100 * Game.SCALE);
 			g.drawString("VOLTAR",(int)(Game.WIDTH * 46.5 / 100 * Game.SCALE),(int)(Game.HEIGHT * 86.5 / 100 * Game.SCALE));
 			if(Server.totalJogadores > 0) {
-				g.drawString("N-JOGADORES: "+Server.totalJogadores,(int)(Game.WIDTH * 2 / 100 * Game.SCALE),(int)(Game.HEIGHT * 4 / 100 * Game.SCALE));	
+			g.drawString("N-JOGADORES: "+Server.totalJogadores+"/2",(int)(Game.WIDTH * 2 / 100 * Game.SCALE),(int)(Game.HEIGHT * 4 / 100 * Game.SCALE));	
 			}
 			
 			if(defineHoster) {
@@ -109,12 +109,23 @@ public class UI {
 			if (Game.configs.activeHud == true) {
 				viewHud(g);
 			}
-			g.setColor(Color.gray);
+			
 			g.fillRect((int) ((Game.WIDTH * 0.8 / 100) * Game.SCALE), (Game.HEIGHT * 2 / 100) * Game.SCALE,(Game.WIDTH * 10 / 100) * Game.SCALE,(int) (Game.WIDTH * 5.5 / 100) * Game.SCALE);
 			g.setColor(Color.BLACK);
 			g.drawString("SCORE: " + Game.player.score, (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 7 / 100) * Game.SCALE);
 			g.drawString("FPS: " + Game.FPS, (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 9.5 / 100) * Game.SCALE);
 			g.drawString("MONEY: " + Game.player.money, (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 4.5 / 100) * Game.SCALE);
+			
+			if(Game.gameMode.equalsIgnoreCase("multi")) {
+				g.setColor(Color.gray);
+				g.fillRect((int) ((Game.WIDTH * 0.8 / 100) * Game.SCALE), (Game.HEIGHT * 40 / 100) * Game.SCALE,(Game.WIDTH * 10 / 100) * Game.SCALE,(int) (Game.WIDTH * 5.5 / 100) * Game.SCALE);
+				g.setColor(Color.black);
+				g.drawString("RANKING", (int) (Game.WIDTH * 5 / 100) * Game.SCALE,(int) (Game.HEIGHT * 42 / 100) * Game.SCALE);
+				g.drawString(Game.cliente.allNames[0]+" - "+Server.score[0], (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 44 / 100) * Game.SCALE);
+				g.drawString(Game.cliente.allNames[1]+" - "+Server.score[1], (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 46 / 100) * Game.SCALE);
+				
+			}
+			
 			drawItemSlot(g);
 		}
 		

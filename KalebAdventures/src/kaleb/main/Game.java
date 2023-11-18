@@ -85,6 +85,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 	public static EventController eventController = new EventController();
 	public static TradeController tradeController = new TradeController();
 	public static MultplayerConfigs multiConf;
+	public static Conection cliente;
 	// Construtor
 	public Game() {
 		random = new Random();
@@ -494,8 +495,13 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 			btnMultiplayer();	
 		}else if(Game.gameState.equalsIgnoreCase("menu_multiplayer")) {
 			btnVoltarMenu();
-			btnHost();
-			btnLogar();
+			if(ui.defineHoster) {
+				btnPlayMult();
+			}else {
+				btnLogar();
+				btnHost();
+			}
+			
 		}else if(Game.gameState.equalsIgnoreCase("tutorial")) {
 			
 		}else if(Game.gameState.equalsIgnoreCase("catch")) {
@@ -576,7 +582,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 	           }
 	          
 	        	gameState = "menu_multiplayer";
-               gameMode = "multi";
+	        	gameMode = "multi";
 	            
 	        }
 	    }
@@ -598,11 +604,19 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 		                 multiConf.ip = localHost.getHostAddress();
 		                 ui.defineHoster = true;
 		                 Server.startServer();
-		                 Conection conect = new Conection(multiConf.ip);
+		                 cliente = new Conection(multiConf.ip);
 		             } catch (UnknownHostException e) {
 		                 e.printStackTrace();
 		             }
 		        }
+		 }
+	}
+	private void btnPlayMult() {
+		 if (player.x > Game.WIDTH * 30 / 100 && player.x < Game.WIDTH * 30 / 100 + Game.WIDTH * 40 / 100) {
+			 if (player.y > Game.HEIGHT * 45 / 100 && player.y < Game.HEIGHT * 45 / 100 + Game.HEIGHT * 15 / 100) {
+				 cliente.info = "play";
+				 
+			 }
 		 }
 	}
 	private void btnLogar() {
@@ -619,7 +633,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 				try {
 					localHost = InetAddress.getLocalHost();
 					multiConf.ip = localHost.getHostAddress();
-			        Conection conect = new Conection(multiConf.ip);
+			        cliente = new Conection(multiConf.ip);
 				} catch (UnknownHostException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
