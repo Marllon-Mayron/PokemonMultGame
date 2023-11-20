@@ -773,9 +773,13 @@ public class Pokemon extends Entity {
 			Game.player.money += 3;
 			Game.player.score += 3;
 		}
-		Game.cliente.info = "updateScore";
+		if(Game.gameMode.equalsIgnoreCase("multi")) {
+			Game.cliente.info = "updateScore";
+			Game.cliente.score[0] = Game.player.score;
+		}
 		
-		Game.cliente.score[0] = Game.player.score;
+		
+		
 		
 		for(int i = 0; i < defeated.attakers.size(); i++) {	 
 			defeated.attakers.get(i).currentXp+=defeated.xpGainCalculator(defeated.attakers.get(i).lvl) / defeated.attakers.size();; 			

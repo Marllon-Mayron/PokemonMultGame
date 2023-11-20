@@ -19,8 +19,8 @@ public class Server extends Thread {
     private Socket conexao;
     private String meuNome;
     public static int totalJogadores = 0;
-    public static String[] allNames = new String[2];
-    public static int[] score = new int[2];
+    public static String[] allNames = new String[10];
+    public static int[] score = new int[10];
     public boolean startedGame;
     
     public Server(Socket s) {
@@ -80,7 +80,7 @@ public class Server extends Thread {
 			while(true) {
 				linha = entrada.readLine();
 				if(startedGame == false) {
-					if(totalJogadores == 2) {
+					if(totalJogadores >= 2) {
 						if(linha.equalsIgnoreCase("playPreparation")) {
 							
 							sendToAll(saida,"RetorneNome");

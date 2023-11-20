@@ -12,8 +12,8 @@ public class Conection extends Thread {
 	public String info = "";
 	public int idJogador = 0;
 	public String clienteName = "";
-	public String[] allNames = new String[2];
-	public int[] score = new int[2];
+	public String[] allNames = new String[10];
+	public int[] score = new int[10];
 	public boolean inGame = false;
 	public int skipFase = 0;
 	public Game game;
