@@ -629,15 +629,11 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 		         if (option == JOptionPane.OK_OPTION) {          
 		            multiConf.ipLogar = ipField.getText();
 		         }
-		         InetAddress localHost;
-				try {
-					localHost = InetAddress.getLocalHost();
-					multiConf.ip = localHost.getHostAddress();
-			        cliente = new Conection(multiConf.ip, this);
-				} catch (UnknownHostException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		
+				
+				multiConf.ip = ipField.getText();
+			    cliente = new Conection(multiConf.ip, this);
+				
                 
 		     }
 		 }
