@@ -15,8 +15,10 @@ public class Conection extends Thread {
 	public String[] allNames = new String[2];
 	public int[] score = new int[2];
 	public boolean inGame = false;
-
-	public Conection(String ip) {
+	public int skipFase = 0;
+	public Game game;
+	public Conection(String ip, Game game) {
+		this.game = game;
 		try {
 			System.out.println(ip);
 			Socket conexao = new Socket(ip, 8080);
@@ -79,7 +81,7 @@ class ConectionReceber extends Thread {
 							cliente.info = "startGame";
 
 						} else if (linha.equalsIgnoreCase("começar")) {
-							Game.gameState = "tutorial";
+							cliente.game.gameState = "tutorial";
 							cliente.inGame = true;
 						}
 					}
@@ -87,13 +89,28 @@ class ConectionReceber extends Thread {
 						//ENVIAR O SCORE ATUAL NO JOGADOR
 						cliente.info = "" + cliente.score[0];
 
-					} else if (linha.equalsIgnoreCase("getScore")) {
+					}else if (linha.equalsIgnoreCase("getScore")) {
 						//PEGAR O SCORE DO JOGADOR
 						do {
 							linha = entrada.readLine();
 						} while (linha.equalsIgnoreCase("") || linha.equalsIgnoreCase("score") || linha.equalsIgnoreCase("updateScore"));						
 						cliente.score[1] = Integer.parseInt(linha);
 						System.out.println("mandando " + cliente.score[1]);
+					}else if (linha.equalsIgnoreCase("skip")) {
+						//BTN DE SKIP
+						cliente.skipFase++;
+						if(cliente.skipFase == 2) {
+							//QUANDO RECONHECER A QUANTIDADE NECESSARIA DE SKIP
+							cliente.game.configs.userPerformance();
+							cliente.game.player.nextGameLevel();
+							cliente.game.gameState = "catch";
+							cliente.game.ui.pcView = "pc";
+							cliente.game.ui.skipPress = false;
+							cliente.skipFase = 0;
+						}
+					}else if (linha.equalsIgnoreCase("skipBack")) {
+						//QUANDO CANCELAREM O SKIP
+						cliente.skipFase--;
 					}
 
 				}

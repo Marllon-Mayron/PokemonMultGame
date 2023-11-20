@@ -28,7 +28,7 @@ public class UI {
 	public BufferedImage leftArrow, rightArrow, dice, btn;
 	public BufferedImage[] starters = new BufferedImage[3];
 	public Pokemon pokemonPcDetails;
-	
+	public boolean skipPress;
 	public boolean defineHoster = false;
 	public List<Pokemon> pkmOffer = new ArrayList<Pokemon>();
 	public Item itemDetails;
@@ -125,12 +125,12 @@ public class UI {
 				g.drawString("RANKING", (int) (Game.WIDTH * 2 / 100) * Game.SCALE,(int) (Game.HEIGHT * 40 / 100) * Game.SCALE);
 				
 				if(Game.player.score < Game.cliente.score[1]) {
-					g.drawString(Game.cliente.allNames[0]+" - "+Game.player.score, (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 47 / 100) * Game.SCALE);
-					g.drawString(Game.cliente.allNames[1]+" - "+Game.cliente.score[1], (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 44 / 100) * Game.SCALE);
+					g.drawString(Game.cliente.allNames[0]+" - "+Game.player.score, (int) (Game.WIDTH * 1.4 / 100) * Game.SCALE,(int) (Game.HEIGHT * 47 / 100) * Game.SCALE);
+					g.drawString(Game.cliente.allNames[1]+" - "+Game.cliente.score[1], (int) (Game.WIDTH * 1.4 / 100) * Game.SCALE,(int) (Game.HEIGHT * 44 / 100) * Game.SCALE);
 					
 				}else {
-					g.drawString(Game.cliente.allNames[0]+" - "+Game.player.score, (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 44 / 100) * Game.SCALE);
-					g.drawString(Game.cliente.allNames[1]+" - "+Game.cliente.score[1], (int) (Game.WIDTH * 1 / 100) * Game.SCALE,(int) (Game.HEIGHT * 47 / 100) * Game.SCALE);
+					g.drawString(Game.cliente.allNames[0]+" - "+Game.player.score, (int) (Game.WIDTH * 1.4 / 100) * Game.SCALE,(int) (Game.HEIGHT * 44 / 100) * Game.SCALE);
+					g.drawString(Game.cliente.allNames[1]+" - "+Game.cliente.score[1], (int) (Game.WIDTH * 1.4 / 100) * Game.SCALE,(int) (Game.HEIGHT * 47 / 100) * Game.SCALE);
 					
 				}
 				
@@ -140,7 +140,12 @@ public class UI {
 		}
 		
 		if (Game.gameState.equalsIgnoreCase("user_view")) {
-			g.setColor(Color.red);
+			if(skipPress) {
+				g.setColor(Color.green);
+			}else {
+				g.setColor(Color.red);
+			}
+			
 			//g.fillRect(Game.WIDTH * 25 / 100 * Game.SCALE, Game.HEIGHT * 2 / 100 * Game.SCALE,Game.WIDTH * 10 / 100 * Game.SCALE, Game.HEIGHT * 8 / 100 * Game.SCALE);
 			//g.fillRect(Game.WIDTH * 45 / 100 * Game.SCALE, Game.HEIGHT * 2 / 100 * Game.SCALE,Game.WIDTH * 10 / 100 * Game.SCALE, Game.HEIGHT * 8 / 100 * Game.SCALE);
 			//g.fillRect(Game.WIDTH * 65 / 100 * Game.SCALE, Game.HEIGHT * 2 / 100 * Game.SCALE,Game.WIDTH * 10 / 100 * Game.SCALE, Game.HEIGHT * 8 / 100 * Game.SCALE);

@@ -22,6 +22,7 @@ public class Server extends Thread {
     public static String[] allNames = new String[2];
     public static int[] score = new int[2];
     public boolean startedGame;
+    
     public Server(Socket s) {
         conexao = s;
     }
@@ -80,7 +81,7 @@ public class Server extends Thread {
 				linha = entrada.readLine();
 				if(startedGame == false) {
 					if(totalJogadores == 2) {
-						if(linha.equalsIgnoreCase("play")) {
+						if(linha.equalsIgnoreCase("playPreparation")) {
 							
 							sendToAll(saida,"RetorneNome");
 							sendToAll(saida,meuNome);
@@ -111,6 +112,13 @@ public class Server extends Thread {
 					}
 					sendToAll(saida, "getScore");
 					sendToAll(saida,linha);
+				}
+				if(linha.equalsIgnoreCase("skipPreparation")) {
+					sendToAll(saida,"skip");
+					sendToMe(saida,"skip");
+				}else if(linha.equalsIgnoreCase("skipBack")) {
+					sendToAll(saida,"skipBack");
+					sendToMe(saida,"skipBack");
 				}
 				
 			}

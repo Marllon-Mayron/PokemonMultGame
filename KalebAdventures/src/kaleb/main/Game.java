@@ -604,7 +604,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 		                 multiConf.ip = localHost.getHostAddress();
 		                 ui.defineHoster = true;
 		                 Server.startServer();
-		                 cliente = new Conection(multiConf.ip);
+		                 cliente = new Conection(multiConf.ip, this);
 		             } catch (UnknownHostException e) {
 		                 e.printStackTrace();
 		             }
@@ -614,7 +614,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 	private void btnPlayMult() {
 		 if (player.x > Game.WIDTH * 30 / 100 && player.x < Game.WIDTH * 30 / 100 + Game.WIDTH * 40 / 100) {
 			 if (player.y > Game.HEIGHT * 45 / 100 && player.y < Game.HEIGHT * 45 / 100 + Game.HEIGHT * 15 / 100) {
-				 cliente.info = "play";
+				 cliente.info = "playPreparation";
 				 
 			 }
 		 }
@@ -633,7 +633,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 				try {
 					localHost = InetAddress.getLocalHost();
 					multiConf.ip = localHost.getHostAddress();
-			        cliente = new Conection(multiConf.ip);
+			        cliente = new Conection(multiConf.ip, this);
 				} catch (UnknownHostException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -786,35 +786,50 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 	private void btn_skip() {
 		if(player.x > Game.WIDTH * 88 / 100 && player.x < Game.WIDTH * 88 / 100 * Game.SCALE + 75/3) {
 			if(player.y > Game.HEIGHT * 2 / 100 && player.y < Game.HEIGHT * 2 / 100 + 38/3) {
-				Game.configs.userPerformance();
-        		player.nextGameLevel();
-        		gameState = "catch";
-        		ui.pcView = "pc";
+				if(gameMode == "multi") {
+					if(ui.skipPress == false) {
+						cliente.info = "skipPreparation";
+						ui.skipPress = true;
+					}else {
+						cliente.info = "skipBack";
+						ui.skipPress = false;
+					}
+					
+				}else {
+					Game.configs.userPerformance();
+	        		player.nextGameLevel();
+	        		gameState = "catch";
+	        		ui.pcView = "pc";
+				}
+				
 			}
 		}
 	}
 	private void bntsClicks() {
-		if(player.x >= Game.WIDTH * 25 / 100 && player.x <= WIDTH * Game.WIDTH * 25 / 100 + Game.WIDTH * 10 / 100) {
-			if(player.y >= HEIGHT * 2 / 100 && player.y <= HEIGHT * 2 / 100 + HEIGHT * 8 / 100) {
-				ui.pcView = "pc";
-				tradeController.slotList.clear();
-				tradeController.sameOfferList.clear();
+		if(ui.skipPress == false) {
+			if(player.x >= Game.WIDTH * 25 / 100 && player.x <= WIDTH * Game.WIDTH * 25 / 100 + Game.WIDTH * 10 / 100) {
+				if(player.y >= HEIGHT * 2 / 100 && player.y <= HEIGHT * 2 / 100 + HEIGHT * 8 / 100) {
+					ui.pcView = "pc";
+					tradeController.slotList.clear();
+					tradeController.sameOfferList.clear();
+				}
+			}
+			if(player.x >= WIDTH * 45 / 100 && player.x <= WIDTH * 45 / 100 + Game.WIDTH * 10 / 100) {
+				if(player.y >= HEIGHT * 2 / 100 && player.y <= HEIGHT * 2 / 100 + HEIGHT * 8 / 100) {
+					ui.pcView = "store";
+					storeController.generateItem();
+					tradeController.slotList.clear();
+					tradeController.sameOfferList.clear();
+				}
+			}
+			if(player.x >= WIDTH * 65 / 100 && player.x <= WIDTH * 65 / 100 + Game.WIDTH * 10 / 100) {
+				if(player.y >= HEIGHT * 2 / 100 && player.y <= HEIGHT * 2 / 100 + HEIGHT * 8 / 100) {
+					ui.pcView = "trade";
+					storeController.generateItem();
+				}
 			}
 		}
-		if(player.x >= WIDTH * 45 / 100 && player.x <= WIDTH * 45 / 100 + Game.WIDTH * 10 / 100) {
-			if(player.y >= HEIGHT * 2 / 100 && player.y <= HEIGHT * 2 / 100 + HEIGHT * 8 / 100) {
-				ui.pcView = "store";
-				storeController.generateItem();
-				tradeController.slotList.clear();
-				tradeController.sameOfferList.clear();
-			}
-		}
-		if(player.x >= WIDTH * 65 / 100 && player.x <= WIDTH * 65 / 100 + Game.WIDTH * 10 / 100) {
-			if(player.y >= HEIGHT * 2 / 100 && player.y <= HEIGHT * 2 / 100 + HEIGHT * 8 / 100) {
-				ui.pcView = "trade";
-				storeController.generateItem();
-			}
-		}
+		
 		
 	}
 	private void mainTimeChange() {
