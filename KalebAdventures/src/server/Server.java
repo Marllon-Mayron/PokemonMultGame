@@ -15,7 +15,7 @@ import kaleb.main.Game;
  */
 public class Server extends Thread {
 
-    private static Vector clientes;
+    private static Vector<PrintStream> clientes;
     private Socket conexao;
     private String meuNome;
     public static int totalJogadores = 0;
@@ -28,7 +28,7 @@ public class Server extends Thread {
 
     // Método para iniciar o servidor
     public static void startServer() {
-        clientes = new Vector();
+        clientes = new Vector<PrintStream>();
 
         try {
             // Criando um socket que fica escutando a porta 8080.
@@ -39,10 +39,10 @@ public class Server extends Thread {
             executorService.execute(() -> {
                 // Loop principal.
                 while (true) {
-                    System.out.print("Esperando alguem se conectar...");
+                    //System.out.print("Esperando alguem se conectar...");
                     try {
                         Socket conexao = serverSocket.accept();
-                        System.out.println("Jogador entrou na sala!");
+                        //System.out.println("Jogador entrou na sala!");
                         totalJogadores++;
                        
 
@@ -71,43 +71,46 @@ public class Server extends Thread {
 			String linha;
 			clientes.add(saida);
 			sendToMe(saida,""+totalJogadores);
-				do {
-					linha = entrada.readLine();
-				}while(linha.equalsIgnoreCase(""));
-				System.out.println("Servidor reconheceu o "+linha);
-				meuNome = linha;
+			do {
+				linha = entrada.readLine();
+			}while(linha.equalsIgnoreCase(""));
 			
+			meuNome = linha;
 			while(true) {
 				linha = entrada.readLine();
 				if(startedGame == false) {
 					if(totalJogadores == 2) {
 						if(linha.equalsIgnoreCase("play")) {
-							//PREENCHER LISTA DE JOGADORES DOS CLIENTES
-							Enumeration e = clientes.elements();
-							int n = 0;
-							while (e.hasMoreElements()) {
-								System.out.println("foi");
-								allNames[n] = meuNome;
-								n++;
-							}
-							sendAll("nomeJogador");
-							for(int i = 0; i < 2; i++) {
-								sendAll(allNames[i]);
-							}
+							
+							sendToAll(saida,"RetorneNome");
+							sendToAll(saida,meuNome);
+							//System.out.println("mandei para todos menos eu o nome "+meuNome);
+							
+						}else if(linha.equalsIgnoreCase("startGame")) {
+							
+							sendToAll(saida,"RetorneNome");
+							sendToAll(saida,meuNome);
+							//System.out.println("mandei para todos menos eu o nome "+meuNome);
 							//COMEÇAR O JOGO
-							System.out.println("JOGO COMEÇOU");
 							sendAll("começar");	
 							startedGame = true;
+							
 						}
 					}
 				}
-				//System.out.println("SERVIDOR RECEBEU: "+ linha);
-				if(linha.equalsIgnoreCase("")) {
-					continue;
-				}else {
-					if(linha.equalsIgnoreCase("scoreUpdate")) {
-						score[Integer.parseInt(entrada.readLine())] = Integer.parseInt(entrada.readLine());
+				if(linha.equalsIgnoreCase("updateScore")) {
+					sendToMe(saida,"sendScore");
+					
+					do {
+						System.out.println("Esperando valor");
+						linha = entrada.readLine();
+					}while(linha.equalsIgnoreCase(""));
+					
+					if(linha.equalsIgnoreCase("updateScore")) {
+						continue;
 					}
+					sendToAll(saida, "getScore");
+					sendToAll(saida,linha);
 				}
 				
 			}

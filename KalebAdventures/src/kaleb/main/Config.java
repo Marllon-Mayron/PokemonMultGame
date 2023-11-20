@@ -15,33 +15,33 @@ public class Config {
 	public double state2Time = 15;
 	
 	public void userPerformance() {
-		int media = 0;
-		int num = 0;
-		for(int i = 0; i < Game.slotList.size(); i++) {
-			if(Game.slotList.get(i).pokemon != null) {
-				media = media+Game.slotList.get(i).pokemon.lvl;
-				num++;
+		if(debugMode) {
+			int media = 0;
+			int num = 0;
+			for(int i = 0; i < Game.slotList.size(); i++) {
+				if(Game.slotList.get(i).pokemon != null) {
+					media = media+Game.slotList.get(i).pokemon.lvl;
+					num++;
+				}
 			}
+			String performance = null;
+			int defeatNum = Game.lvlConfig.get(Game.currentLvl).myVictorys;
+			int totalWave = Game.lvlConfig.get(Game.currentLvl).nGen * Game.lvlConfig.get(Game.currentLvl).pokeGenNum[Game.currentLvl];
 			
+			if(defeatNum >= (double)(totalWave * 80)/ 100) {
+				performance = "Excelente!";
+			}else if(defeatNum >= (double)(totalWave * 60)/ 100 && defeatNum < (double)(totalWave * 80)/ 100) {
+				performance = "Boa!";
+			}else if(defeatNum >= (double)(totalWave * 40)/ 100 && defeatNum < (double)(totalWave * 60)/ 100) {
+				performance = "Mediana!";
+			}else if(defeatNum >= (double)(totalWave * 20)/ 100 && defeatNum < (double)(totalWave * 40)/ 100) {
+				performance = "Ruim!";
+			}else{
+				performance = "Horrivel!";
+			}
+			System.out.println(defeatNum+"-"+totalWave);
+			System.out.println("Seu desempenho foi "+performance+"\nSua media de nivel foi de "+media/num);
 		}
-		String performance = null;
-		int defeatNum = Game.lvlConfig.get(Game.currentLvl).myVictorys;
-		int totalWave = Game.lvlConfig.get(Game.currentLvl).nGen * Game.lvlConfig.get(Game.currentLvl).pokeGenNum[Game.currentLvl];
-		
-		if(defeatNum >= (double)(totalWave * 80)/ 100) {
-			performance = "Excelente!";
-		}else if(defeatNum >= (double)(totalWave * 60)/ 100 && defeatNum < (double)(totalWave * 80)/ 100) {
-			performance = "Boa!";
-		}else if(defeatNum >= (double)(totalWave * 40)/ 100 && defeatNum < (double)(totalWave * 60)/ 100) {
-			performance = "Mediana!";
-		}else if(defeatNum >= (double)(totalWave * 20)/ 100 && defeatNum < (double)(totalWave * 40)/ 100) {
-			performance = "Ruim!";
-		}else{
-			performance = "Horrivel!";
-		}
-		System.out.println(defeatNum+"-"+totalWave);
-		System.out.println("Seu desempenho foi "+performance+"\nSua media de nivel foi de "+media/num);
-		
 	}
 	
 	public String quebrarLinhas(String texto, int limiteCaracteres) {
