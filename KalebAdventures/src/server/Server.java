@@ -19,10 +19,10 @@ public class Server extends Thread {
     private Socket conexao;
     private String meuNome;
     public static int totalJogadores = 0;
-    public static String[] allNames = new String[10];
-    public static int[] score = new int[10];
+    public static String[] allNames;
+    public static int[] score;
     public boolean startedGame;
-    
+    public boolean sendTotal = false;
     public Server(Socket s) {
         conexao = s;
     }
@@ -82,16 +82,25 @@ public class Server extends Thread {
 				if(startedGame == false) {
 					if(totalJogadores >= 2) {
 						if(linha.equalsIgnoreCase("playPreparation")) {
-							
+							//ENVIAR QUANTIDADE EXATA DE JOGADORES NA PARTIDA
+							if(sendTotal == false) {
+								System.out.println("QUANTOS JOGADORES TEM");
+								sendAll("totalJogadores");
+								sendAll(""+totalJogadores);
+								sendTotal = true;
+								allNames = new String[totalJogadores];
+								score = new int[totalJogadores];
+							}
+							//===============================================//
 							sendToAll(saida,"RetorneNome");
-							sendToAll(saida,meuNome);
-							//System.out.println("mandei para todos menos eu o nome "+meuNome);
+						    sendToAll(saida,meuNome);
+							System.out.println("mandei para todos menos eu o nome "+meuNome);
 							
 						}else if(linha.equalsIgnoreCase("startGame")) {
 							
 							sendToAll(saida,"RetorneNome");
 							sendToAll(saida,meuNome);
-							//System.out.println("mandei para todos menos eu o nome "+meuNome);
+							System.out.println("nome "+meuNome);
 							//COMEÇAR O JOGO
 							sendAll("começar");	
 							startedGame = true;

@@ -12,10 +12,11 @@ public class Conection extends Thread {
 	public String info = "";
 	public int idJogador = 0;
 	public String clienteName = "";
-	public String[] allNames = new String[10];
-	public int[] score = new int[10];
+	public String[] allNames ;
+	public int[] score;
 	public boolean inGame = false;
 	public int skipFase = 0;
+	public int totalJogadores, cn = 1;
 	public Game game;
 	public Conection(String ip, Game game) {
 		this.game = game;
@@ -65,19 +66,28 @@ class ConectionReceber extends Thread {
 						if (cliente.idJogador == 0) {
 							cliente.idJogador = Integer.parseInt(linha);
 						}
-						if (linha.equalsIgnoreCase("RetorneNome")) {
+						if (linha.equalsIgnoreCase("totalJogadores")) {
+							do {
+								linha = entrada.readLine();
+							} while (linha.equalsIgnoreCase(""));
+							
+							cliente.totalJogadores = Integer.parseInt(linha);
+							cliente.allNames = new String[cliente.totalJogadores];
+							cliente.score = new int[cliente.totalJogadores];
 							cliente.allNames[0] = cliente.clienteName;
-							if ((cliente.allNames[1] == "" || cliente.allNames[1] == null)) {
+						}
+						if (linha.equalsIgnoreCase("RetorneNome")) {
+							if ((cliente.allNames[cliente.cn] == "" || cliente.allNames[cliente.cn] == null)) {
 								do {
 									linha = entrada.readLine();
-								} while (linha.equalsIgnoreCase("") || linha.equalsIgnoreCase(cliente.allNames[0]));
-								cliente.allNames[1] = linha;
-								System.out.println(cliente.allNames[0] + cliente.allNames[1]);
-
+								} while (linha.equalsIgnoreCase("") || linha.equalsIgnoreCase(cliente.allNames[cliente.cn-1]));
+								cliente.allNames[cliente.cn] = linha;
+								cliente.cn++;
 							} else {
 								linha = "";
 								continue;
 							}
+							
 							cliente.info = "startGame";
 
 						} else if (linha.equalsIgnoreCase("começar")) {
@@ -99,7 +109,7 @@ class ConectionReceber extends Thread {
 					}else if (linha.equalsIgnoreCase("skip")) {
 						//BTN DE SKIP
 						cliente.skipFase++;
-						if(cliente.skipFase == 2) {
+						if(cliente.skipFase == cliente.totalJogadores) {
 							//QUANDO RECONHECER A QUANTIDADE NECESSARIA DE SKIP
 							cliente.game.configs.userPerformance();
 							cliente.game.player.nextGameLevel();

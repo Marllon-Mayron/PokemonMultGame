@@ -38,6 +38,7 @@ public class Player extends Entity {
 	}
 
 	public void tick() {
+		//PARA SABER QUANTOS ITENS TEM NA LINHA
 		if(Game.ui.nRow == 0) {
 			listSize = pokeballItemList.size();
 		}if(Game.ui.nRow == 1) {
@@ -47,12 +48,8 @@ public class Player extends Entity {
 		}if(Game.ui.nRow == 3) {
 			listSize = evolueItemList.size();
 		}
+		//=====================================
 		if (Game.waveList.size() == 0 && Game.generateList.size() == 0 && Game.gameState.equalsIgnoreCase("catch")) {
-			if(Game.gameMode.equalsIgnoreCase("single")) {
-				
-			}else {
-				
-			}
 			Game.gameState = "user_view";
 			Game.ui.pcView = "pc";
 			Game.ui.nDice = 2;
@@ -67,9 +64,6 @@ public class Player extends Entity {
 		}
 		
 	}
-
-
-
 	public void nextGameLevel() {
 		if(Game.currentLvl+1 !=  Game.lvlConfig.get(0).total) {
 			Game.currentLvl++;

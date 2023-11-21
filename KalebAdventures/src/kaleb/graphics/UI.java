@@ -118,13 +118,13 @@ public class UI {
 			
 			if(Game.gameMode.equalsIgnoreCase("multi")) {
 				g.setColor(Color.gray);
-				g.fillRect((int) ((Game.WIDTH * 0.8 / 100) * Game.SCALE), (Game.HEIGHT * 40 / 100) * Game.SCALE,(Game.WIDTH * 10 / 100) * Game.SCALE,(int) (Game.WIDTH * 5.5 / 100) * Game.SCALE);
+				g.fillRect((int) ((Game.WIDTH * 0.8 / 100) * Game.SCALE), (Game.HEIGHT * 40 / 100) * Game.SCALE,(Game.WIDTH * 10 / 100) * Game.SCALE,(int) (Game.WIDTH * 8 / 100) * Game.SCALE);
 				g.setColor(Color.black);
 				
-				g.drawRect((int) ((Game.WIDTH * 0.8 / 100) * Game.SCALE), (Game.HEIGHT * 40 / 100) * Game.SCALE,(Game.WIDTH * 10 / 100) * Game.SCALE,(int) (Game.WIDTH * 5.5 / 100) * Game.SCALE);
-				g.drawString("RANKING", (int) (Game.WIDTH * 2 / 100) * Game.SCALE,(int) (Game.HEIGHT * 40 / 100) * Game.SCALE);
+				g.drawRect((int) ((Game.WIDTH * 0.8 / 100) * Game.SCALE), (Game.HEIGHT * 40 / 100) * Game.SCALE,(Game.WIDTH * 10 / 100) * Game.SCALE,(int) (Game.WIDTH * 8 / 100) * Game.SCALE);
+				g.drawString("RANKING-"+Game.cliente.totalJogadores, (int) (Game.WIDTH * 2 / 100) * Game.SCALE,(int) (Game.HEIGHT * 40 / 100) * Game.SCALE);
 				
-				if(Game.player.score < Game.cliente.score[1]) {
+				/**if(Game.player.score < Game.cliente.score[1]) {
 					g.drawString(Game.cliente.allNames[0]+" - "+Game.player.score, (int) (Game.WIDTH * 1.4 / 100) * Game.SCALE,(int) (Game.HEIGHT * 47 / 100) * Game.SCALE);
 					g.drawString(Game.cliente.allNames[1]+" - "+Game.cliente.score[1], (int) (Game.WIDTH * 1.4 / 100) * Game.SCALE,(int) (Game.HEIGHT * 44 / 100) * Game.SCALE);
 					
@@ -132,7 +132,15 @@ public class UI {
 					g.drawString(Game.cliente.allNames[0]+" - "+Game.player.score, (int) (Game.WIDTH * 1.4 / 100) * Game.SCALE,(int) (Game.HEIGHT * 44 / 100) * Game.SCALE);
 					g.drawString(Game.cliente.allNames[1]+" - "+Game.cliente.score[1], (int) (Game.WIDTH * 1.4 / 100) * Game.SCALE,(int) (Game.HEIGHT * 47 / 100) * Game.SCALE);
 					
+				}**/
+		
+				
+				//g.drawString(Game.cliente.allNames[0]+" - "+Game.player.score, (int) (Game.WIDTH * 1.4 / 100) * Game.SCALE,(int) (Game.HEIGHT * 44 / 100) * Game.SCALE);
+				for(int i = 0; i < Game.cliente.totalJogadores ; i++) {
+					g.drawString(Game.cliente.allNames[i]+" - "+Game.cliente.score[i], (int) (Game.WIDTH * 1.4 / 100) * Game.SCALE,(int) (Game.HEIGHT * (44 + (3*i)) / 100) * Game.SCALE);					
 				}
+				
+				
 				
 			}
 			
