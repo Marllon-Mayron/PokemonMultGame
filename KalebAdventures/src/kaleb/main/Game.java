@@ -813,7 +813,6 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 			if(player.x >= WIDTH * 45 / 100 && player.x <= WIDTH * 45 / 100 + Game.WIDTH * 10 / 100) {
 				if(player.y >= HEIGHT * 2 / 100 && player.y <= HEIGHT * 2 / 100 + HEIGHT * 8 / 100) {
 					ui.pcView = "store";
-					storeController.generateItem();
 					tradeController.slotList.clear();
 					tradeController.sameOfferList.clear();
 				}

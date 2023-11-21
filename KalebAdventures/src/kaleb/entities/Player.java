@@ -44,6 +44,8 @@ public class Player extends Entity {
 			listSize = medicineItemList.size();
 		}if(Game.ui.nRow == 2) {
 			listSize = battleItemList.size();
+		}if(Game.ui.nRow == 3) {
+			listSize = evolueItemList.size();
 		}
 		if (Game.waveList.size() == 0 && Game.generateList.size() == 0 && Game.gameState.equalsIgnoreCase("catch")) {
 			if(Game.gameMode.equalsIgnoreCase("single")) {
@@ -53,6 +55,8 @@ public class Player extends Entity {
 			}
 			Game.gameState = "user_view";
 			Game.ui.pcView = "pc";
+			Game.ui.nDice = 2;
+			Game.storeController.generateItem();
 			Game.tradeController.populateNpcTrade();
 			//RETIRAR POKEMON DO MAPA
 			removePokemons();
@@ -99,8 +103,6 @@ public class Player extends Entity {
 					timer.schedule(tarefa, 0, sec*1000);
 				}
 			}
-			
-			
 			
 		}
 		
