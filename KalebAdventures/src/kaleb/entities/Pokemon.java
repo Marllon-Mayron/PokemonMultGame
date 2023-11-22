@@ -775,6 +775,7 @@ public class Pokemon extends Entity {
 		}
 		if(Game.gameMode.equalsIgnoreCase("multi")) {
 			Game.cliente.info = "updateScore";
+			
 			Game.cliente.score[0] = Game.player.score;
 		}
 		

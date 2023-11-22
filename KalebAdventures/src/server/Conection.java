@@ -16,7 +16,7 @@ public class Conection extends Thread {
 	public int[] score;
 	public boolean inGame = false;
 	public int skipFase = 0;
-	public int totalJogadores, cn = 1;
+	public int totalJogadores, cn = 0;
 	public Game game;
 	public Conection(String ip, Game game) {
 		this.game = game;
@@ -74,21 +74,23 @@ class ConectionReceber extends Thread {
 							cliente.totalJogadores = Integer.parseInt(linha);
 							cliente.allNames = new String[cliente.totalJogadores];
 							cliente.score = new int[cliente.totalJogadores];
-							cliente.allNames[0] = cliente.clienteName;
+							
+						}
+						if (linha.equalsIgnoreCase("preparationStart")) {
+							cliente.info = "playPreparation";
 						}
 						if (linha.equalsIgnoreCase("RetorneNome")) {
-							if ((cliente.allNames[cliente.cn] == "" || cliente.allNames[cliente.cn] == null)) {
-								do {
-									linha = entrada.readLine();
-								} while (linha.equalsIgnoreCase("") || linha.equalsIgnoreCase(cliente.allNames[cliente.cn-1]));
-								cliente.allNames[cliente.cn] = linha;
-								cliente.cn++;
-							} else {
-								linha = "";
-								continue;
-							}
-							
+							do {
+								linha = entrada.readLine();
+							} while (linha.equalsIgnoreCase(""));
+							cliente.allNames[cliente.cn] = linha;
+							System.out.println("nm"+cliente.cn+" ADICIONADO: "+linha);
+							cliente.cn++;
 							cliente.info = "startGame";
+							
+							if(cliente.idJogador == 1) {
+								cliente.info = "startGame2";
+							}
 
 						} else if (linha.equalsIgnoreCase("começar")) {
 							cliente.game.gameState = "tutorial";
@@ -99,13 +101,28 @@ class ConectionReceber extends Thread {
 						//ENVIAR O SCORE ATUAL NO JOGADOR
 						cliente.info = "" + cliente.score[0];
 
+					}else if (linha.equalsIgnoreCase("sendNome")) {
+						//ENVIAR O SCORE ATUAL NO JOGADOR
+						cliente.info = cliente.allNames[0];
+
 					}else if (linha.equalsIgnoreCase("getScore")) {
 						//PEGAR O SCORE DO JOGADOR
 						do {
 							linha = entrada.readLine();
 						} while (linha.equalsIgnoreCase("") || linha.equalsIgnoreCase("score") || linha.equalsIgnoreCase("updateScore"));						
-						cliente.score[1] = Integer.parseInt(linha);
-						System.out.println("mandando " + cliente.score[1]);
+						
+						int score = Integer.parseInt(linha);
+						
+						do {
+							linha = entrada.readLine();
+						} while (linha.equalsIgnoreCase("") || linha.equalsIgnoreCase("score") || linha.equalsIgnoreCase("updateScore"));						
+						
+						for(int i = 0; i < cliente.totalJogadores; i++) {
+							if(cliente.allNames[i].equalsIgnoreCase(linha)) {
+								cliente.score[i] = score;
+							}
+						}
+					
 					}else if (linha.equalsIgnoreCase("skip")) {
 						//BTN DE SKIP
 						cliente.skipFase++;
@@ -148,13 +165,12 @@ class ConectionEnviar extends Thread {
 			saida.println(cliente.clienteName);
 			while (true) {
 				Thread.sleep(1000);
-
-				saida.println(cliente.info);
-				if (!(cliente.info == "")) {
+				if(cliente.info != "") {
+					saida.println(cliente.info);
 					// System.out.println("Mandei"+cliente.info);
+					cliente.info = "";
 				}
 
-				cliente.info = "";
 			}
 		} catch (IOException | InterruptedException e) {
 			System.out.println("IOException: " + e);

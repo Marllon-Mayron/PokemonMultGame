@@ -614,7 +614,7 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 	private void btnPlayMult() {
 		 if (player.x > Game.WIDTH * 30 / 100 && player.x < Game.WIDTH * 30 / 100 + Game.WIDTH * 40 / 100) {
 			 if (player.y > Game.HEIGHT * 45 / 100 && player.y < Game.HEIGHT * 45 / 100 + Game.HEIGHT * 15 / 100) {
-				 cliente.info = "playPreparation";
+				 cliente.info = "start";
 				 
 			 }
 		 }

@@ -18,11 +18,11 @@ public class Server extends Thread {
     private static Vector<PrintStream> clientes;
     private Socket conexao;
     private String meuNome;
-    public static int totalJogadores = 0;
-    public static String[] allNames;
-    public static int[] score;
+    public String msgLog;
+    public static int totalJogadores = 0, qnt;
     public boolean startedGame;
     public boolean sendTotal = false;
+    public boolean debug = true;
     public Server(Socket s) {
         conexao = s;
     }
@@ -77,50 +77,76 @@ public class Server extends Thread {
 			}while(linha.equalsIgnoreCase(""));
 			
 			meuNome = linha;
+						msgLog = meuNome+" entrou no game!";
+			debugServer();
+			
 			while(true) {
 				linha = entrada.readLine();
 				if(startedGame == false) {
 					if(totalJogadores >= 2) {
+						if(linha.equalsIgnoreCase("start")) {
+							sendAll("preparationStart");
+						}
 						if(linha.equalsIgnoreCase("playPreparation")) {
 							//ENVIAR QUANTIDADE EXATA DE JOGADORES NA PARTIDA
 							if(sendTotal == false) {
-								System.out.println("QUANTOS JOGADORES TEM");
-								sendAll("totalJogadores");
-								sendAll(""+totalJogadores);
+								sendToMe(saida,"totalJogadores");
+								sendToMe(saida,""+totalJogadores);
+								
+								sendToMe(saida,"RetorneNome");
+								sendToMe(saida, meuNome);
 								sendTotal = true;
-								allNames = new String[totalJogadores];
-								score = new int[totalJogadores];
 							}
 							//===============================================//
-							sendToAll(saida,"RetorneNome");
-						    sendToAll(saida,meuNome);
-							System.out.println("mandei para todos menos eu o nome "+meuNome);
+							
+							
 							
 						}else if(linha.equalsIgnoreCase("startGame")) {
+							//COMEÇAR O JOGO
+							msgLog = meuNome+" começou a jogar!";
+							debugServer();
 							
 							sendToAll(saida,"RetorneNome");
-							sendToAll(saida,meuNome);
-							System.out.println("nome "+meuNome);
-							//COMEÇAR O JOGO
-							sendAll("começar");	
-							startedGame = true;
+						    sendToAll(saida, meuNome);
+
+						}else if(linha.equalsIgnoreCase("startGame2")) {
 							
+							 sendToAll(saida,"RetorneNome");
+							 sendToAll(saida, meuNome);
+							 sendAll("começar");
 						}
+						
 					}
 				}
 				if(linha.equalsIgnoreCase("updateScore")) {
-					sendToMe(saida,"sendScore");
+					//=========================================
 					
+					sendToMe(saida,"sendScore");
 					do {
-						System.out.println("Esperando valor");
+						msgLog = "Esperando score...";
+						debugServer();
+						
 						linha = entrada.readLine();
 					}while(linha.equalsIgnoreCase(""));
+					String score = linha;
 					
-					if(linha.equalsIgnoreCase("updateScore")) {
-						continue;
-					}
+					//=========================================
+					
+					sendToMe(saida,"sendNome");
+					do {
+						msgLog = "Esperando nome...";
+						debugServer();
+						
+						linha = entrada.readLine();
+					}while(linha.equalsIgnoreCase(""));
+					String nome = linha;
+					
+					//=========================================
+					
 					sendToAll(saida, "getScore");
-					sendToAll(saida,linha);
+					sendToAll(saida,score);
+					sendToAll(saida,nome);
+					
 				}
 				if(linha.equalsIgnoreCase("skipPreparation")) {
 					sendToAll(saida,"skip");
@@ -163,5 +189,11 @@ public class Server extends Thread {
 			chat.println(linha);
 			
 		}
+	}
+	public void debugServer() {
+		if(debug) {
+			System.out.println("Servidor: "+msgLog);
+		}
+		
 	}
 }
