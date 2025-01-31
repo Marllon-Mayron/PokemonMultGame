@@ -36,6 +36,7 @@ public class Pokemon extends Entity {
 	public double spdInMap;
 	//SOMA DE TODOS OS STATES, USADO PARA BALANCEAR NO TRADE
 	public double totalStates;
+	//
 	public double cooldown;
 	public double cooldownFrame;
 	public String status;
@@ -49,7 +50,9 @@ public class Pokemon extends Entity {
 	public String itemToEvolue;
 	public String triggerEvolution;
 	//==========================================
+	//NOME DA NATUREZA DO POKEMON
 	public String nature;
+	//NUMERO DA NATUREZA DO POKEMON
 	public int natureId;
 
 	public int lvl;

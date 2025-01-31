@@ -2,6 +2,7 @@ package kaleb.controller;
 
 public class OwnerController {
 
+	//NUMERO DE VARIANTES DE POKEMONS QUE UM MESMO TREINADOR PODE TER
 	public int num[][] = new int[18][3];
 	public String[][] treinersPokemon;
 	public String[][] treinersBugPokemon;
@@ -32,15 +33,15 @@ public class OwnerController {
 		num[6][0] = 3;
 		num[6][1] = 3;
 		num[6][2] = 0;
-		//treinersRockPokemon = new String[3][num[6][0]];
-		//treinersRockPokemon[0][0] = "2,27";
-		//treinersRockPokemon[0][1] = "2,50";
-		//treinersRockPokemon[0][2] = "2,74";
-		/**
+		treinersRockPokemon = new String[3][num[6][0]];
+		treinersRockPokemon[0][0] = "2,27";
+		treinersRockPokemon[0][1] = "2,50";
+		treinersRockPokemon[0][2] = "2,74";
+		
 		treinersRockPokemon[1][0] = "2,27,74";
 		treinersRockPokemon[1][1] = "2,74,74";
 		treinersRockPokemon[1][2] = "2,50,27";
-		**/
+		
 		//============================================
 		num[7][0] = 4;
 		num[7][1] = 8;

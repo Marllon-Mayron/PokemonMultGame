@@ -72,18 +72,23 @@ public class Game extends Canvas implements Runnable, KeyListener,MouseListener,
 	public static Spritesheet spritesheet;
 	public static Player player;
 	public static Pokedex pokedex = new Pokedex();
+	//MAPA ATUAL
 	public static int currentLvl = 0;
 	public static Random random;
 	public static Config configs = new Config();
 	public static int FPS = 0;
+	//STATUS DAS TELAS DO JOGO
 	public static String gameState = "menu";
+	//ETAPAS DO TUTORIAL
 	public static int tutorialSteps = 0;
 	public static String gameMode = "";
+	//CONTROLLERS DO GAME
 	public static PcController pc;
 	public static StoreController storeController = new StoreController();
 	public static ItemController itemController = new ItemController();
 	public static EventController eventController = new EventController();
 	public static TradeController tradeController = new TradeController();
+	//MULTIPLAYER
 	public static MultplayerConfigs multiConf;
 	public static Conection cliente;
 	// Construtor

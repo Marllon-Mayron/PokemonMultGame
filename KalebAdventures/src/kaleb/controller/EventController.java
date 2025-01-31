@@ -39,12 +39,13 @@ public class EventController {
 		int typeNum = generateTempList.get(n).numType;
 		if(typeNum == 1) {
 			pokeList = ownerController.treinersPokemon[0][Game.random.nextInt(ownerController.num[typeNum][difficulty])].split(",");
+			current = 0;
 		}else if(typeNum == 7) {
-			pokeList = ownerController.treinersBugPokemon[0][Game.random.nextInt(ownerController.num[typeNum][difficulty])].split(",");
-			
+			pokeList = ownerController.treinersBugPokemon[0][Game.random.nextInt(ownerController.num[typeNum][difficulty])].split(",");			
+			current = 0;
 		}else if(typeNum == 6) {
 			pokeList = ownerController.treinersRockPokemon[0][Game.random.nextInt(ownerController.num[typeNum][difficulty])].split(",");
-			
+			current = 0;
 		}
 		qnt = pokeList.length - 1;
 		
